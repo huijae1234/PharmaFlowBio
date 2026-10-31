@@ -1,0 +1,12 @@
+{
+  "header": { "resultCode": "00", "resultMsg": "NORMAL SERVICE." },
+  "body": {
+    "pageNo": 1, "totalCount": 4, "numOfRows": 10,
+    "items": [
+      { "ITEM_SEQ": "900000001", "ITEM_NAME": "시험인플루엔자4가백신주 (시험 자료)", "ENTP_NAME": "가상백신(주) (시험 자료)", "ITEM_INGR_NAME": "인플루엔자바이러스항원", "SPCLTY_PBLC": "전문의약품", "ITEM_PERMIT_DATE": "20200315", "CANCEL_NAME": "정상", "PRDUCT_TYPE": "[06310]백신류" },
+      { "ITEM_SEQ": "900000002", "ITEM_NAME": "시험B형간염백신주 (시험 자료)", "ENTP_NAME": "가상백신(주) (시험 자료)", "ITEM_INGR_NAME": "B형간염표면항원", "SPCLTY_PBLC": "전문의약품", "ITEM_PERMIT_DATE": "20180901", "CANCEL_NAME": "정상", "PRDUCT_TYPE": "[06310]백신류" },
+      { "ITEM_SEQ": "900000003", "ITEM_NAME": "시험파상풍백신주 (시험 자료)", "ENTP_NAME": "가상바이오(주) (시험 자료)", "ITEM_INGR_NAME": "파상풍톡소이드", "SPCLTY_PBLC": "전문의약품", "ITEM_PERMIT_DATE": "20151120", "CANCEL_NAME": "취소", "PRDUCT_TYPE": "[06310]백신류" },
+      { "ITEM_SEQ": "900000004", "ITEM_NAME": "시험해열진통정 (시험 자료)", "ENTP_NAME": "가상제약(주) (시험 자료)", "ITEM_INGR_NAME": "아세트아미노펜", "SPCLTY_PBLC": "일반의약품", "ITEM_PERMIT_DATE": "20101005", "CANCEL_NAME": "정상", "PRDUCT_TYPE": "[01140]해열.진통.소염제" }
+    ]
+  }
+}

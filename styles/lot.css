@@ -1,0 +1,49 @@
+/* 로트 상세 개편: 위쪽 카드, 지금 할 일 상자, 숫자 3칸, 공정 단계 흐름. 토큰은 tokens.css */
+.lot-head { display: grid; gap: var(--space-3); padding: var(--space-4) var(--space-5); }
+.lot-head-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3) var(--space-4); }
+.lot-title { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); min-width: 0; }
+.lot-title .page-title { margin: 0; }
+.lot-product { color: var(--color-text-muted); }
+.lot-meta { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.lot-meta li { padding: 0 var(--space-3); border-radius: var(--radius-pill); background: var(--badge-neutral-bg); color: var(--badge-neutral-text); font-size: var(--text-sm); line-height: 1.75; }
+
+.todo-box { padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius); }
+.todo-box--open { background: var(--badge-warning-bg); border-color: #fde68a; }
+.todo-box--ready { background: var(--badge-success-bg); border-color: #bbf7d0; }
+.todo-box--idle { background: var(--color-hover); }
+.todo-title { margin: 0 0 var(--space-2); font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); }
+.todo-line { margin: 0; }
+.todo-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.todo-item { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.todo-item .task-cta { margin-left: auto; background: var(--color-surface); }
+.todo-next { font-weight: 700; }
+
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-3); }
+.tile { display: grid; gap: 2px; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-surface); }
+.tile-label { color: var(--color-text-muted); font-size: var(--text-sm); }
+.tile-value { font-size: var(--text-lg); }
+.tile-sub { color: var(--color-text-muted); font-size: var(--text-sm); }
+.tile--alert .tile-value { color: var(--badge-warning-text); }
+.recent-history { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; gap: var(--space-1); font-size: var(--text-sm); }
+
+.tab-count { margin-left: var(--space-2); min-width: 20px; padding: 0 var(--space-2); border-radius: var(--radius-pill); background: var(--badge-neutral-bg); color: var(--badge-neutral-text); font-size: var(--text-xs); font-weight: 700; line-height: 1.75; text-align: center; }
+.tab-count--open { background: var(--badge-warning-bg); color: var(--badge-warning-text); }
+.group-title { margin: 0 0 var(--space-2); font-size: var(--text-md); }
+
+/* 공정 단계 흐름: 점과 선. 상태는 아래 글자로도 읽힌다 */
+.stepper { list-style: none; margin: 0; padding: 0; display: flex; overflow-x: auto; }
+.stepper-item { position: relative; flex: 1 1 0; min-width: 104px; display: grid; justify-items: center; gap: 2px; text-align: center; font-size: var(--text-sm); color: var(--color-text-muted); }
+.stepper-item::before { content: ""; position: absolute; top: 13px; left: -50%; right: 50%; height: 2px; background: var(--color-border); }
+.stepper-item:first-child::before { display: none; }
+.stepper-dot { position: relative; z-index: 1; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; border: 2px solid var(--color-border); background: var(--color-surface); font-weight: 700; }
+.stepper-name { color: var(--color-text); font-weight: 600; }
+.stepper-status { font-size: var(--text-xs); }
+.stepper-item--completed::before, .stepper-item--in_progress::before { background: var(--status-releasable); }
+.stepper-item--completed .stepper-dot { background: var(--status-releasable); border-color: var(--status-releasable); color: #fff; }
+.stepper-item--in_progress .stepper-dot { border-color: var(--color-ink); background: var(--color-accent); color: var(--color-accent-ink); }
+.stepper-item--in_progress .stepper-status { color: var(--color-text); font-weight: 700; }
+
+.step-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-3); }
+.step-card { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius); }
+.step-card p { margin: 0; }
+.step-card--current { border-color: var(--color-ink); }

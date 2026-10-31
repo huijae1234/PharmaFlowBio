@@ -1,0 +1,42 @@
+/* 품질 이슈·조치 요청 화면 (spec 002). 토큰은 tokens.css */
+.request-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.request { border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-3); }
+.request:last-child { border-bottom: 0; padding-bottom: 0; }
+.request p { margin: 0 0 var(--space-1); }
+.request-head { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.rejected-reason {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  background: var(--badge-danger-bg);
+  color: var(--badge-danger-text);
+}
+.textarea { padding: var(--space-2) var(--space-3); resize: vertical; }
+
+/* 품질 영향 평가 칸·창 (spec 005) */
+.review-content { display: grid; grid-template-columns: minmax(7rem, max-content) 1fr; gap: var(--space-1) var(--space-3); margin: 0 0 var(--space-2); }
+.review-content dt { color: var(--color-text-muted); font-weight: 600; }
+.review-content dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.review-evidence { padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius); }
+.review-evidence .field-label { margin: 0 0 var(--space-1); }
+@media (max-width: 480px) {
+  .review-content { grid-template-columns: 1fr; }
+  .review-content dd { margin-bottom: var(--space-2); }
+}
+
+/* 단계 표시줄 (spec 005 FR-006): 좁은 화면에서는 줄을 바꾼다 */
+/* 개편: 점과 선으로 이어진 흐름. 지나온 곳은 ✓, 지금은 라임 "지금" 표시 (색만으로 구분하지 않음) */
+.step-bar { counter-reset: step; list-style: none; margin: var(--space-3) 0 0; padding: 0; display: flex; overflow-x: auto; }
+.step { counter-increment: step; position: relative; flex: 1 1 0; min-width: 68px; display: grid; justify-items: center; align-content: start; gap: 2px; text-align: center; font-size: var(--text-sm); color: var(--color-text-muted); }
+.step::before {
+  content: counter(step); position: relative; z-index: 1; width: 28px; height: 28px; display: grid; place-items: center;
+  border-radius: 50%; border: 2px solid var(--color-border); background: var(--color-surface); font-weight: 700;
+}
+.step::after { content: ""; position: absolute; top: 13px; left: -50%; right: 50%; height: 2px; background: var(--color-border); }
+.step:first-child::after { display: none; }
+.step--done::before { content: "✓"; background: var(--status-releasable); border-color: var(--status-releasable); color: #fff; }
+.step--done::after, .step--current::after { background: var(--status-releasable); }
+.step--current { color: var(--color-text); font-weight: 700; }
+.step--current::before { border-color: var(--color-ink); background: var(--color-accent); color: var(--color-accent-ink); }
+.step-now { font-size: var(--text-xs); padding: 0 var(--space-2); border-radius: var(--radius-pill); background: var(--color-ink); color: #fff; }
+.step-note { font-size: var(--text-xs); }
+.next-step { margin: var(--space-2) 0 0; }

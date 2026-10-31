@@ -1,0 +1,11 @@
+# 배포에 넣지 않는 파일 (plan 001 §5 보안). 로컬 server.js의 파일 막기는 Vercel에 적용되지 않는다.
+.env
+.env.*
+.claude
+docs
+tests
+fixtures
+supabase
+server.js
+CLAUDE.md
+GLOSSARY.md

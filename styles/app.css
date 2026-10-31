@@ -1,0 +1,327 @@
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: 1.5;
+}
+
+a { color: var(--color-primary-strong); }
+
+/* 키보드로 지금 선택된 곳이 보이게 (디자인 기본선 4) */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -100px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  z-index: 10;
+}
+.skip-link:focus { top: var(--space-2); }
+
+/* 화면 틀: 넓은 화면은 왼쪽 사이드바, 좁은 화면은 위쪽 메뉴 버튼 */
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* 어두운 잉크색 옆 메뉴: 화면이 길어도 메뉴는 그 자리에 */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--color-sidebar);
+  color: #fff;
+  padding: var(--space-5) var(--space-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  padding: 0 var(--space-3);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: #fff;
+}
+/* spec 009 FR-006: 로그인 화면 앱 아이콘 */
+.login-icon { border-radius: var(--space-3); }
+/* spec 007 FR-001: "PharmaFlow Bio"의 Bio는 한 단계 흐리게 */
+.brand-sub { font-weight: 600; color: var(--color-accent); }
+/* 어두운 메뉴 위의 메뉴 열기 버튼 (좁은 화면) */
+.sidebar .button { background: transparent; color: #fff; border-color: rgb(255 255 255 / 0.35); }
+
+.button.menu-toggle { display: none; }
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.nav-list a {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-size);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius);
+  color: rgb(255 255 255 / 0.78);
+  text-decoration: none;
+}
+.nav-list a:hover { background: rgb(255 255 255 / 0.08); color: #fff; }
+.nav-list a { justify-content: space-between; gap: var(--space-2); }
+/* 메뉴 묶음 이름 (업무 / 기준정보 / 관리) */
+.nav-group { display: grid; gap: var(--space-1); }
+.nav-group + .nav-group { margin-top: var(--space-4); }
+.nav-group-label { margin: 0 0 var(--space-1); padding: 0 var(--space-3); color: rgb(255 255 255 / 0.55); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.04em; }
+/* 메뉴 옆 건수 (승인 대기): 라임 바탕에 짙은 글자 */
+.nav-count { min-width: 22px; padding: 0 var(--space-2); border-radius: var(--radius-pill); background: var(--color-accent); color: var(--color-accent-ink); font-size: var(--text-xs); font-weight: 700; line-height: 1.75; text-align: center; }
+.nav-count:empty { display: none; }
+/* 선택한 메뉴: 색만이 아니라 굵기와 왼쪽 막대로도 구분 (디자인 기본선 5) */
+.nav-list a[aria-current="page"] {
+  background: rgb(255 255 255 / 0.12);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+.main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 56px;
+  padding: 0 var(--space-5);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.notice {
+  margin: var(--space-4) var(--space-5) 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  background: var(--badge-warning-bg);
+  color: var(--badge-warning-text);
+}
+
+.content {
+  padding: var(--space-5);
+  min-width: 0;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.page-title {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-xl);
+  letter-spacing: -0.01em;
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+
+.muted { color: var(--color-text-muted); }
+
+.mono { font-family: var(--font-mono); }
+
+/* 상태 배지: 글자 + 색 (디자인 기본선 5) */
+.badge {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.75;
+  background: var(--badge-neutral-bg);
+  color: var(--badge-neutral-text);
+}
+.badge--info { background: var(--badge-info-bg); color: var(--badge-info-text); }
+.badge--success { background: var(--badge-success-bg); color: var(--badge-success-text); }
+.badge--warning { background: var(--badge-warning-bg); color: var(--badge-warning-text); }
+.badge--danger { background: var(--badge-danger-bg); color: var(--badge-danger-text); }
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-size);
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+.button--primary {
+  background: var(--color-primary-strong);
+  border-color: var(--color-primary-strong);
+  color: var(--color-on-primary);
+}
+.button--primary:hover { background: var(--color-primary-strong-hover); }
+.button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.stack { display: grid; gap: var(--space-4); }
+/* 격자 칸이 표 길이만큼 늘어나 휴대폰 화면이 넓어지지 않게 (디자인 기본선 6) */
+.stack > * { min-width: 0; }
+
+.section-title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-md);
+  font-weight: 700;
+}
+
+.small { font-size: var(--text-sm); }
+
+.break { word-break: break-all; }
+
+.error-text { color: var(--badge-danger-text); margin: var(--space-2) 0 0; }
+.error-text:empty, .status-text:empty { display: none; }
+.status-text {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  background: var(--badge-info-bg);
+  color: var(--badge-info-text);
+}
+
+/* 표: 좁은 화면에서는 표 안에서만 옆으로 밀린다 (페이지 가로 스크롤 없음) */
+.table-wrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+.table th, .table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  white-space: nowrap;
+}
+.table th { color: var(--color-text-muted); font-weight: 600; font-size: var(--text-xs); background: var(--color-table-head); }
+.table tbody tr:hover { background: var(--color-hover); }
+.table tbody tr:last-child td { border-bottom: 0; }
+/* 행 전체를 눌러 첫 칸의 링크로 간다 (목록 표). 링크의 눌리는 영역만 행 크기로 넓힌다 */
+.table--linked tbody tr { position: relative; cursor: pointer; }
+.table--linked tbody td:first-child a::after { content: ""; position: absolute; inset: 0; }
+/* 긴 기준 글자(규격 · 관리기준 · 버전)는 줄을 바꿔 판정 칸이 화면 밖으로 밀리지 않게 (spec 004 FR-004) */
+.table td.cell-wrap { white-space: normal; min-width: 12rem; }
+
+.plain-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+
+.stat-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--space-3);
+}
+.stat {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+  display: grid;
+}
+.stat-label { color: var(--color-text-muted); font-size: var(--text-sm); }
+.stat-value { font-size: var(--text-xl); font-family: var(--font-mono); }
+
+.select {
+  min-height: var(--tap-size);
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  font: inherit;
+}
+
+.login-page {
+  min-height: 100vh;
+  background: var(--color-sidebar);
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+}
+.login-panel { width: min(100%, 400px); display: grid; gap: var(--space-3); }
+.login-brand { margin-bottom: 0; color: var(--color-primary-strong); }
+.login-brand .brand-sub { color: var(--color-text-muted); } /* 흰 카드 위라 라임이 아닌 흐린 글자 */
+.button--wide { width: 100%; }
+
+@media (max-width: 767px) {
+  .shell { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; }
+  .sidebar {
+    position: static;
+    height: auto;
+    padding: var(--space-2) var(--space-4);
+  }
+  .brand { margin-bottom: 0; }
+  .button.menu-toggle { display: inline-flex; }
+  .nav-group { display: none; padding-top: var(--space-2); }
+  .sidebar.is-open .nav-group { display: grid; }
+  .nav-group + .nav-group { margin-top: 0; }
+  .topbar { padding: 0 var(--space-4); }
+  .notice { margin: var(--space-3) var(--space-4) 0; }
+  .content { padding: var(--space-4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* 전체 업무 이력 거르기 (spec 002 FR-013) */
+.filter-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-3); align-items: end; }
+.filter-form .toolbar { grid-column: 1 / -1; }
+
+/* spec 009 FR-007: 위쪽 알림 버튼과 알림 함 */
+.inbox { position: relative; }
+.inbox-button--new { font-weight: 700; border-color: var(--color-primary); color: var(--color-primary-strong); }
+.inbox-panel {
+  /* 버튼 옆에 이름·로그아웃이 있어 버튼에 붙이면 왼쪽으로 넘친다. 화면 오른쪽에 붙인다 */
+  position: fixed; right: var(--space-4); top: 64px; z-index: 20;
+  width: min(380px, calc(100vw - 2 * var(--space-4))); max-height: 70vh; overflow-y: auto;
+  box-shadow: var(--shadow-modal);
+}
+.inbox-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.inbox-head .section-title { margin: 0; }
+.inbox-list { margin: var(--space-3) 0 0; }
+.inbox-item { display: grid; gap: var(--space-1); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }
+.inbox-item:last-child { border-bottom: 0; }
+.inbox-item a { color: var(--color-text); text-decoration: none; }
+.inbox-item a:hover .inbox-message { text-decoration: underline; }
+.inbox-item--new .inbox-message { font-weight: 700; }
+.inbox-meta { font-size: var(--text-xs); }
+
+/* spec 009 v0.7 FR-009: 슬랙 확인 표시. 확인함은 ✓ 글자와 초록, 확인 전은 흐린 글자 (색만으로 구분하지 않음) */
+.ack-slot { display: block; font-size: var(--text-xs); color: var(--color-text-muted); }
+.ack-slot:empty { display: none; }
+.ack-slot--done { color: var(--badge-success-text); font-weight: 600; }
+.ack-flash { animation: ack-flash 1s ease-out; }
+@keyframes ack-flash { from { background-color: var(--badge-success-bg); } to { background-color: transparent; } }
+@media (prefers-reduced-motion: reduce) {
+  .ack-flash { animation: none; background-color: var(--badge-success-bg); }
+}

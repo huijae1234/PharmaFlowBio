@@ -1,0 +1,11 @@
+{
+  "header": { "resultCode": "00", "resultMsg": "NORMAL SERVICE." },
+  "body": {
+    "pageNo": 1, "totalCount": 3, "numOfRows": 100,
+    "items": [
+      { "item": { "ITEM_SEQ": "900000001", "PRDUCT": "시험인플루엔자4가백신주 (시험 자료)", "ENTRPS": "가상백신(주) (시험 자료)", "RTRVL_RESN": "역가 시험 부적합 (시험 자료)", "RECALL_COMMAND_DATE": "20261020", "MNFCTUR_NO": "T2610A" } },
+      { "item": { "ITEM_SEQ": "900000004", "PRDUCT": "시험해열진통정 (시험 자료)", "ENTRPS": "가상제약(주) (시험 자료)", "RTRVL_RESN": "용출 시험 부적합 (시험 자료)", "RECALL_COMMAND_DATE": "20260905", "MNFCTUR_NO": "T2609B" } },
+      { "item": { "ITEM_SEQ": "900000002", "PRDUCT": "시험B형간염백신주 (시험 자료)", "ENTRPS": "가상백신(주) (시험 자료)", "RTRVL_RESN": "이물 혼입 (시험 자료)", "RECALL_COMMAND_DATE": "20251201", "MNFCTUR_NO": "T2512C" } }
+    ]
+  }
+}

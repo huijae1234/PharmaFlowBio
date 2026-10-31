@@ -1,0 +1,9 @@
+{
+  "name": "pharmaflow",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "start": "node --env-file-if-exists=.env server.js"
+  }
+}

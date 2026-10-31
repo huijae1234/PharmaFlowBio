@@ -1,0 +1,93 @@
+{
+  "header": {
+    "resultCode": "00",
+    "resultMsg": "NORMAL SERVICE."
+  },
+  "body": {
+    "pageNo": 1,
+    "totalCount": 8,
+    "numOfRows": 100,
+    "items": [
+      {
+        "RCPT_PRCS_NO": "T-2610-001",
+        "SPCM_FORM_LIMS_PRDLST_NM": "시험인플루엔자4가백신주 (시험 자료) (검체)",
+        "PRDLST_NM": "시험인플루엔자4가백신주 (시험 자료)",
+        "MNFT_SALPS_NM": "가상백신(주) (시험 자료)",
+        "MNFT_NO": "T2610A",
+        "RESULT_TIME": "20261015",
+        "PROVT_UNIT": "1",
+        "VLD_PRD": "20271015"
+      },
+      {
+        "RCPT_PRCS_NO": "T-2609-004",
+        "SPCM_FORM_LIMS_PRDLST_NM": "시험인플루엔자4가백신주 (시험 자료) (검체)",
+        "PRDLST_NM": "시험인플루엔자4가백신주 (시험 자료)",
+        "MNFT_SALPS_NM": "가상백신(주) (시험 자료)",
+        "MNFT_NO": "T2609C",
+        "RESULT_TIME": "20260918",
+        "PROVT_UNIT": "1",
+        "VLD_PRD": "20270918"
+      },
+      {
+        "RCPT_PRCS_NO": "T-2608-002",
+        "SPCM_FORM_LIMS_PRDLST_NM": "시험인플루엔자4가백신주 (시험 자료) (검체)",
+        "PRDLST_NM": "시험인플루엔자4가백신주 (시험 자료)",
+        "MNFT_SALPS_NM": "가상백신바이오(주) (시험 자료)",
+        "MNFT_NO": "T2608B",
+        "RESULT_TIME": "20260820",
+        "PROVT_UNIT": "1",
+        "VLD_PRD": "20270820"
+      },
+      {
+        "RCPT_PRCS_NO": "T-2607-003",
+        "SPCM_FORM_LIMS_PRDLST_NM": "시험인플루엔자4가백신주 (시험 자료) (검체)",
+        "PRDLST_NM": "시험인플루엔자4가백신주 (시험 자료)",
+        "MNFT_SALPS_NM": "가상백신(주) (시험 자료)",
+        "MNFT_NO": "T2607A",
+        "RESULT_TIME": "20260710",
+        "PROVT_UNIT": "1",
+        "VLD_PRD": "20270710"
+      },
+      {
+        "RCPT_PRCS_NO": "T-2610-009",
+        "SPCM_FORM_LIMS_PRDLST_NM": "시험B형간염백신주 (시험 자료) (검체)",
+        "PRDLST_NM": "시험B형간염백신주 (시험 자료)",
+        "MNFT_SALPS_NM": "가상백신(주) (시험 자료)",
+        "MNFT_NO": "T2610H",
+        "RESULT_TIME": "20261010",
+        "PROVT_UNIT": "1",
+        "VLD_PRD": "20271010"
+      },
+      {
+        "RCPT_PRCS_NO": "T-2609-011",
+        "SPCM_FORM_LIMS_PRDLST_NM": "시험파상풍백신주 (시험 자료) (검체)",
+        "PRDLST_NM": "시험파상풍백신주 (시험 자료)",
+        "MNFT_SALPS_NM": "가상바이오(주) (시험 자료)",
+        "MNFT_NO": "T2609T",
+        "RESULT_TIME": "20260925",
+        "PROVT_UNIT": "1",
+        "VLD_PRD": "20270925"
+      },
+      {
+        "RCPT_PRCS_NO": "T-2606-005",
+        "SPCM_FORM_LIMS_PRDLST_NM": "시험파상풍백신주 (시험 자료) (검체)",
+        "PRDLST_NM": "시험파상풍백신주 (시험 자료)",
+        "MNFT_SALPS_NM": "가상바이오(주) (시험 자료)",
+        "MNFT_NO": "T2606T",
+        "RESULT_TIME": "20260612",
+        "PROVT_UNIT": "1",
+        "VLD_PRD": "20270612"
+      },
+      {
+        "RCPT_PRCS_NO": "T-2610-020",
+        "SPCM_FORM_LIMS_PRDLST_NM": "시험다른백신주 (시험 자료) (검체)",
+        "PRDLST_NM": "시험다른백신주 (시험 자료)",
+        "MNFT_SALPS_NM": "전혀다른제약(주) (시험 자료)",
+        "MNFT_NO": "T2610X",
+        "RESULT_TIME": "20261020",
+        "PROVT_UNIT": "1",
+        "VLD_PRD": "20271020"
+      }
+    ]
+  }
+}

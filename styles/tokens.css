@@ -1,0 +1,91 @@
+/* 디자인 토큰 한곳. 색·간격·글꼴은 여기서만 정한다.
+   톤 v2 "클리니컬 글라스" (2026-10-28 사용자 요청: 참고 이미지 3의 깔끔하고 투명한 느낌, 팔레트는 백신·제약에 맞게 다시):
+   연한 하늘빛 바탕 + 반투명 흰 카드 + 임상 청록 행동색 + 라임 한 점(지금 해야 할 것) + 큰 숫자는 얇게 */
+:root {
+  /* 기준 색 */
+  --color-primary: #0b6e8a;
+  --color-success: #1e9e62;
+  --color-warning: #c77700;
+  --color-danger: #d1344b;
+  --color-surface: #ffffff;
+  --color-text: #0f2233;
+
+  /* 글자·버튼에 쓰는 진한 색: 흰 바탕 명암비 4.5:1 이상 (디자인 기본선 3). #0b6e8a는 흰 글자와 5.7:1 */
+  --color-primary-strong: #0b6e8a;
+  --color-primary-strong-hover: #085870;
+  --color-on-primary: #ffffff;
+  --color-text-muted: #4a6075;
+  --color-background: #eef4f9;
+  /* 라임은 배경으로만, 글자는 짙은 색. 잉크(짙은 남색)는 칩·말풍선처럼 대비가 필요한 곳 */
+  --color-ink: #0f2233;
+  --color-accent: #d7f34a;
+  --color-accent-ink: #26330a;
+  --color-info: #3b5bdb;
+  --color-border: #dbe6ee;
+  --color-focus: #0b6e8a;
+
+  /* 유리 카드: 반투명 흰색 + 배경 흐림 + 가는 테두리 + 아주 옅은 그림자 */
+  --glass-bg: rgb(255 255 255 / 0.55);
+  --glass-border: rgb(255 255 255 / 0.9);
+  --glass-line: #dbe6ee;
+  --glass-shadow: 0 8px 30px rgb(31 64 104 / 0.07);
+  --glass-blur: blur(18px) saturate(1.25);
+  /* 하늘빛 강조 면 (참고 이미지 3의 왼쪽 파란 면) */
+  --sky-from: #cfe3f5;
+  --sky-to: #e6f1fa;
+
+  /* 틀 */
+  --color-sidebar: rgb(255 255 255 / 0.6);
+  --color-nav-active: #e1f0f6;
+  --color-table-head: transparent;
+  --color-hover: rgb(11 110 138 / 0.06);
+
+  /* 상태 배지: 옅은 바탕 + 진한 글자 (상태는 글자로도 표시, 디자인 기본선 5) */
+  --badge-neutral-bg: #eaf0f5;
+  --badge-neutral-text: #33485c;
+  --badge-info-bg: #eaf0ff;
+  --badge-info-text: #2c46b5;
+  --badge-success-bg: #e8f7ef;
+  --badge-success-text: #0f6b3f;
+  --badge-warning-bg: #fff4de;
+  --badge-warning-text: #8a4b00;
+  --badge-danger-bg: #fdecef;
+  --badge-danger-text: #9f1f34;
+
+  /* 글꼴: 한글·영문·숫자 모두 Pretendard. 큰 숫자는 얇게(300), 로트번호·코드는 JetBrains Mono */
+  --font-sans: "Pretendard Variable", Pretendard, system-ui, -apple-system, "Malgun Gothic", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+  /* 글자 크기 12/14/16/20/24/32 (+ 큰 숫자 40) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-display: 2.5rem;
+
+  /* 간격 4/8/12/16/24/32 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* 모서리: 카드 16, 버튼·입력 12, 칩·배지는 알약 */
+  --radius: 6px;
+  --radius-card: 8px;
+  --radius-pill: 4px;
+  --shadow-modal: 0 16px 48px rgb(15 34 51 / 0.18);
+  --sidebar-width: 232px;
+
+  /* 로트 상태 막대·범례·도넛 색. 상태는 범례의 글자와 숫자로도 읽힌다 */
+  --status-in_production: #8ec5e8;
+  --status-in_testing: #3b5bdb;
+  --status-on_hold: #f0a020;
+  --status-releasable: #1e9e62;
+  --status-shipped: #0f6b3f;
+  --status-discarded: #9fb0c0;
+  --tap-size: 44px;
+}

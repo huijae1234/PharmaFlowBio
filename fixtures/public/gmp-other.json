@@ -1,0 +1,20 @@
+{
+  "header": {
+    "resultCode": "00",
+    "resultMsg": "NORMAL SERVICE."
+  },
+  "body": {
+    "pageNo": 1,
+    "totalCount": 1,
+    "numOfRows": 100,
+    "items": [
+      {
+        "BSSH_NM": "전혀다른제약(주) (시험 자료)",
+        "FCTR_ADDR": "가상시 시험로 9 (시험 자료)",
+        "KGMP_BGMP_NAME": "완제",
+        "GMP_INGR_MM_GROUP_NAME": "백신 주사제",
+        "VLD_PRD_YMD": "20301231"
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "header": { "resultCode": "00", "resultMsg": "NORMAL SERVICE." },
+  "body": {
+    "pageNo": 1, "totalCount": 2, "numOfRows": 10,
+    "items": [
+      { "ITEM_SEQ": "900000005", "ITEM_NAME": "시험칸빠짐백신주 (시험 자료)", "PRDUCT_TYPE": "[06310]백신류" },
+      { "ITEM_SEQ": "900000006", "ITEM_NAME": "시험날짜이상백신주 (시험 자료)", "ENTP_NAME": null, "ITEM_PERMIT_DATE": "2026-13", "CANCEL_NAME": "", "PRDUCT_TYPE": "[06310]백신류" }
+    ]
+  }
+}

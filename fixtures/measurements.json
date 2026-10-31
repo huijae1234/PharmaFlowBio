@@ -1,0 +1,22 @@
+{
+  "about": "시험용 시험값·공정값 (정상·위험). 모두 가상. 기준은 예시 제품 '인플루엔자 4가 백신 프리필드주 (가상)' v1. 확인할 것과 실제 결과는 docs/test-data.md",
+  "product": "인플루엔자 4가 백신 프리필드주 (가상)",
+  "specs": {
+    "역가": { "category": "test", "unit": "%", "min": 80, "max": 125, "alertMin": 90, "alertMax": 115 },
+    "엔도톡신": { "category": "test", "unit": "EU/mL", "min": 0, "max": 10, "alertMin": 0, "alertMax": 5 },
+    "pH": { "category": "test", "unit": "", "min": 6.8, "max": 7.6, "alertMin": 7.0, "alertMax": 7.4 },
+    "보관 온도": { "category": "process", "unit": "℃", "min": 2, "max": 8, "alertMin": 3, "alertMax": 7 }
+  },
+  "cases": [
+    { "id": "N-01", "group": "정상", "item": "역가", "input": "100", "expect": "pass" },
+    { "id": "N-02", "group": "정상", "item": "엔도톡신", "input": "1.5", "expect": "pass" },
+    { "id": "N-03", "group": "정상", "item": "pH", "input": "7.2", "expect": "pass" },
+    { "id": "N-04", "group": "정상", "item": "보관 온도", "input": "4.8", "expect": "pass" },
+    { "id": "R-01", "group": "위험", "item": "역가", "input": "85", "expect": "out_of_alert" },
+    { "id": "R-02", "group": "위험", "item": "역가", "input": "130", "expect": "out_of_spec" },
+    { "id": "R-03", "group": "위험", "item": "엔도톡신", "input": "7.2", "expect": "out_of_alert" },
+    { "id": "R-04", "group": "위험", "item": "엔도톡신", "input": "12", "expect": "out_of_spec" },
+    { "id": "R-05", "group": "위험", "item": "pH", "input": "6.5", "expect": "out_of_spec" },
+    { "id": "R-06", "group": "위험", "item": "보관 온도", "input": "9.2", "expect": "out_of_spec" }
+  ]
+}

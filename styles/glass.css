@@ -1,0 +1,110 @@
+/* 톤 v2 "클리니컬 글라스" 덮어쓰기: 밝고 투명한 바탕, 반투명 카드, 밝은 옆 메뉴, 얇은 큰 숫자.
+   다른 css 뒤에 불러와서 어두운 옆 메뉴와 불투명 카드를 바꾼다. 색은 tokens.css */
+body {
+  background:
+    radial-gradient(820px 560px at 92% -10%, #b9d8f2 0%, rgb(185 216 242 / 0) 64%),
+    radial-gradient(700px 520px at 48% 112%, #cfeee0 0%, rgb(207 238 224 / 0) 60%),
+    radial-gradient(620px 420px at -6% 30%, #d9e4fa 0%, rgb(217 228 250 / 0) 62%),
+    var(--color-background);
+  background-attachment: fixed;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 밝은 반투명 옆 메뉴 */
+.sidebar {
+  background: var(--color-sidebar);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-right: 1px solid var(--glass-line);
+  color: var(--color-text);
+}
+.brand { color: var(--color-ink); }
+.brand-sub { color: var(--color-primary-strong); }
+.sidebar .button { background: transparent; color: var(--color-text); border-color: var(--glass-line); }
+.nav-list a { color: #35506a; }
+.nav-list a:hover { background: var(--color-hover); color: var(--color-ink); }
+.nav-group-label { color: var(--color-text-muted); }
+.nav-list a[aria-current="page"] {
+  background: #fff;
+  color: var(--color-ink);
+  box-shadow: 0 2px 10px rgb(31 64 104 / 0.08), inset 3px 0 0 var(--color-accent);
+}
+
+/* 흐림 효과가 위쪽 줄을 따로 쌓는 층으로 만든다. 그 안의 알림 함(z-index 20)이 아래 카드들 밑으로 깔리지 않게 위쪽 줄 전체를 본문 위에 둔다 */
+.topbar {
+  position: relative;
+  z-index: 30;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-line);
+}
+
+/* 반투명 카드 */
+.panel {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-shadow);
+}
+.modal { border-radius: var(--radius-card); }
+/* 알림 함은 화면 위에 떠 있어서 반투명이면 뒤 글자가 비쳐 읽기 어렵다. 불투명 흰 바탕 */
+.inbox-panel { background: var(--color-surface); }
+.tile, .stat, .ready-item, .step-card, .impact { background: rgb(255 255 255 / 0.6); }
+.table th { background: transparent; border-bottom: 1px solid var(--glass-line); }
+.table td { border-bottom-color: rgb(219 230 238 / 0.7); }
+.table tbody tr:hover { background: var(--color-hover); }
+.input, .select { background: rgb(255 255 255 / 0.85); border-color: var(--glass-line); }
+.button { background: rgb(255 255 255 / 0.85); border-color: var(--glass-line); }
+.button--primary { background: var(--color-primary-strong); border-color: var(--color-primary-strong); }
+.button--primary:hover { background: var(--color-primary-strong-hover); }
+.fchip { background: rgb(255 255 255 / 0.8); border-color: var(--glass-line); }
+.fchip--on { background: var(--color-ink); border-color: var(--color-ink); }
+
+/* 큰 숫자는 얇고 크게 (참고 이미지 3) */
+.kpi-value, .stat-value, .legend strong.mono, .donut-total { font-family: var(--font-sans); font-weight: 300; letter-spacing: -0.02em; }
+.kpi-value { font-size: var(--text-xl); }
+
+/* 하늘빛 강조 면: "지금 할 일" 카드 위쪽 띠를 라임에서 하늘빛 그라데이션 + 라임 선으로 */
+.card--tasks { border-top: 0; background: linear-gradient(180deg, var(--sky-from) 0, rgb(255 255 255 / 0.72) 84px); }
+.card--tasks::before { content: ""; display: block; height: 4px; margin: calc(var(--space-4) * -1) calc(var(--space-5) * -1) var(--space-3); border-radius: var(--radius-card) var(--radius-card) 0 0; background: var(--color-accent); }
+
+/* 로그인 */
+.login-page { background: transparent; }
+.login-brand .brand-sub { color: var(--color-primary-strong); }
+
+/* 글꼴 없는 환경에서도 같은 폭 숫자 */
+.mono { font-variant-numeric: tabular-nums; }
+
+/* 카드 테두리는 흰빛 선 + 안쪽 윗선: 유리처럼 (참고 이미지: 반투명 카드, 작은 회색 이름 + 큰 얇은 숫자) */
+.panel { border-color: rgb(255 255 255 / 0.85); box-shadow: var(--glass-shadow), inset 0 1px 0 rgb(255 255 255 / 0.9); }
+
+/* 홈 지표: 카드 한 칸씩. 이름은 위에 작게, 숫자는 크고 얇게, 단위는 작게 */
+.kpi-inline { gap: var(--space-3); }
+.kpi-inline li, .kpi-link { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+.kpi-inline li {
+  min-width: 8.5rem; padding: var(--space-2) var(--space-4);
+  background: var(--glass-bg); border: 1px solid rgb(255 255 255 / 0.85); border-radius: var(--radius-card);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgb(255 255 255 / 0.9);
+}
+.kpi-inline .kpi-link { width: 100%; }
+.kpi-label { font-size: var(--text-xs); color: var(--color-text-muted); }
+.kpi-value { font-size: 2rem; line-height: 1.1; }
+.kpi-unit { margin-left: 2px; font-size: var(--text-sm); font-weight: 400; color: var(--color-text-muted); }
+/* 휴대폰: 지표 카드를 몇 개든 한 줄에 (2026-10-29 사용자 요청, 기준 385px·더 좁은 화면도).
+   격자로 칸을 똑같이 나눠 줄바꿈이 생기지 않게 하고, 좁을수록 여백·숫자를 줄인다. 이름은 칸 안에서만 줄을 바꾼다 */
+@media (max-width: 600px) {
+  .kpi-inline { flex: 1 1 100%; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--space-2); }
+  .kpi-inline li { min-width: 0; padding: var(--space-2) var(--space-3); }
+  .kpi-label { word-break: keep-all; overflow-wrap: anywhere; }
+  .kpi-value { font-size: var(--text-xl); }
+}
+@media (max-width: 360px) {
+  .kpi-inline { gap: var(--space-1); }
+  .kpi-inline li { padding: var(--space-2); }
+  .kpi-value { font-size: var(--text-lg); }
+  .kpi-unit { font-size: var(--text-xs); }
+}

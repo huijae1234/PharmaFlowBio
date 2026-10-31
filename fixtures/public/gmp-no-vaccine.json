@@ -1,0 +1,20 @@
+{
+  "header": {
+    "resultCode": "00",
+    "resultMsg": "NORMAL SERVICE."
+  },
+  "body": {
+    "pageNo": 1,
+    "totalCount": 1,
+    "numOfRows": 100,
+    "items": [
+      {
+        "BSSH_NM": "가상백신(주) (시험 자료)",
+        "FCTR_ADDR": "가상시 시험로 1 (시험 자료)",
+        "KGMP_BGMP_NAME": "완제",
+        "GMP_INGR_MM_GROUP_NAME": "정제, 캡슐제",
+        "VLD_PRD_YMD": "20301231"
+      }
+    ]
+  }
+}

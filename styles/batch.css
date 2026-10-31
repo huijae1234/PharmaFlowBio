@@ -1,0 +1,93 @@
+/* 배치 목록·상세·입력 모달 (spec 001 5단계). 토큰은 tokens.css */
+.page-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.page-header .page-title { margin: 0; }
+.toolbar { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+/* 375px에서 안쪽 도구줄이 내용 폭만큼 버텨 페이지가 가로로 밀리던 것을 막는다(배포 화면에서 직접 측정: 로트 568px, 작업지시 551px → 375px) */
+.toolbar, .toolbar > * { min-width: 0; max-width: 100%; }
+
+.batch-header .page-title { margin-bottom: var(--space-2); }
+.batch-meta { margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.issue-count { color: var(--color-text-muted); }
+.issue-count--open { color: var(--badge-warning-text); font-weight: 600; }
+
+.tabs { display: flex; gap: var(--space-1); overflow-x: auto; border-bottom: 1px solid var(--color-border); }
+.tab {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-size);
+  padding: 0 var(--space-3);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+}
+.tab[aria-current="page"] { color: var(--color-primary-strong); border-bottom-color: var(--color-primary-strong); font-weight: 600; }
+
+.record { border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-3); }
+.record:last-child { border-bottom: 0; padding-bottom: 0; }
+.record-head { margin: 0 0 var(--space-2); }
+
+.modal {
+  width: min(100% - 2 * var(--space-4), 480px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  color: var(--color-text);
+  box-shadow: var(--shadow-modal);
+}
+.modal::backdrop { background: rgb(15 23 42 / 0.45); }
+.modal-form { display: grid; gap: var(--space-3); }
+.modal-actions { display: flex; justify-content: flex-end; gap: var(--space-2); }
+
+.field { display: grid; gap: var(--space-1); }
+.field-label { font-weight: 600; font-size: var(--text-sm); }
+.field-hint { color: var(--color-text-muted); font-size: var(--text-sm); }
+.input {
+  min-height: var(--tap-size);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+.input.mono { font-family: var(--font-mono); }
+.error-text:empty { display: none; }
+.textarea { min-height: 88px; padding: var(--space-2) var(--space-3); resize: vertical; }
+.modal { max-height: calc(100vh - 2 * var(--space-4)); overflow-y: auto; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* 출하 판정 모달 (spec 002 FR-009) */
+.choices { border: 0; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.choice { display: flex; align-items: center; gap: var(--space-2); min-height: var(--tap-size); }
+.choice--disabled { color: var(--color-text-muted); }
+.release-blockers {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  background: var(--badge-danger-bg);
+  color: var(--badge-danger-text);
+}
+.release-blockers p, .release-blockers ul { margin: 0; }
+/* 내부 출하 검토는 국가출하승인이 아니라는 안내 (spec 004 FR-008) */
+.release-notice {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  background: var(--badge-info-bg);
+  color: var(--badge-info-text);
+  font-weight: 600;
+}
+.release-blockers ul { padding-left: var(--space-4); }
+
+/* 배치 상세 위쪽 요약 (FR-009 수용 기준 1) */
+.batch-summary { display: grid; gap: var(--space-1); margin: var(--space-2) 0 0; }
+.batch-summary ol { list-style: none; margin: 0; padding: 0; font-size: var(--text-sm); }
+/* spec 007 FR-008: 목록 검색 칸 */
+.search-box { display: flex; gap: var(--space-2); flex: 1 1 260px; max-width: 420px; }
+.search-box .input { flex: 1; min-width: 0; }
+a.button { text-decoration: none; }
+
+/* spec 008 확인할 검체 한 줄: 좁은 화면에서 버튼이 아래로 내려간다 */
+.check-item { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }
+.check-item:last-child { border-bottom: 0; }
+.timeline { margin: 0; font-size: var(--text-sm); line-height: 1.5; min-width: 11rem; }

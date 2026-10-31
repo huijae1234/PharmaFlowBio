@@ -1,0 +1,209 @@
+/* PharmaFlow 발표 — pitch deck 톤 "E": 딥 네이비 바탕 + 청록·라임 포인트, 밝은 앱 캡처가 떠오르는 구성.
+   색은 :root 한 곳에서만 정한다(바꾸고 싶으면 아래 값만 교체). 내용은 index.html, 동작은 deck.js. */
+@font-face{font-family:Pretendard;font-weight:300;src:url(fonts/Pretendard-Light.woff2) format("woff2")}
+@font-face{font-family:Pretendard;font-weight:400;src:url(fonts/Pretendard-Regular.woff2) format("woff2")}
+@font-face{font-family:Pretendard;font-weight:500;src:url(fonts/Pretendard-Medium.woff2) format("woff2")}
+@font-face{font-family:Pretendard;font-weight:600;src:url(fonts/Pretendard-SemiBold.woff2) format("woff2")}
+
+:root{
+  --bg-0:#0a1a27;--bg-1:#0c2c3d;
+  --ink:#eaf2f7;--muted:#9bb0be;--faint:#6f8798;
+  --accent:#5fc7dc;--accent-ink:#06303a;--lime:#d7f34a;--lime-ink:#26330a;--warn:#f0a020;
+  --card:rgba(255,255,255,.055);--card-line:rgba(255,255,255,.12);--line:rgba(255,255,255,.14);
+  --font-sans:"Pretendard",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --slide-w:1280px;--slide-h:720px;--px:72px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#050d14;font-family:var(--font-sans);color:var(--ink)}
+
+/* ---- 뷰어 틀 ---- */
+.viewport{position:fixed;inset:0;overflow:hidden}
+/* 창이 1280보다 좁아도 가운데 기준으로 줄어들게: 무대를 가운데에 놓고 확대·축소 */
+.stage{position:absolute;left:50%;top:50%;margin:-360px 0 0 -640px;width:var(--slide-w);height:var(--slide-h);transform-origin:center center}
+.slide{position:absolute;inset:0;display:none;overflow:hidden;color:var(--ink);font-size:18px;line-height:28px;
+  background:radial-gradient(760px 460px at 100% -4%,rgba(95,199,220,.13),transparent 70%),linear-gradient(160deg,var(--bg-0),var(--bg-1))}
+.slide.on{display:block}
+.slide *{margin:0;padding:0;box-sizing:border-box}
+.slide aside.notes{display:none}
+.hud{position:absolute;left:72px;top:5px;z-index:5;color:var(--faint);font-size:12px;line-height:16px;display:flex;gap:14px}
+.notes-panel{position:fixed;right:0;top:0;bottom:0;width:380px;background:#fff;color:#1b2b34;padding:20px;overflow:auto;z-index:6;display:none;font-size:15px;line-height:24px;border-left:3px solid #5fc7dc}
+.notes-panel.on{display:block}
+.notes-panel h4{font-size:16px;margin:0 0 8px}
+.notes-panel p,.notes-panel li{margin:4px 0}
+
+/* ---- 머리·제목·바닥 ---- */
+.top{position:absolute;left:var(--px);right:var(--px);top:26px;display:flex;justify-content:space-between;align-items:center;font-size:14px;letter-spacing:.06em;color:var(--muted)}
+.brand{font-weight:600;color:var(--ink);letter-spacing:.02em;font-size:16px}
+.brand b{color:var(--accent);font-weight:600}
+.chap{color:var(--accent);letter-spacing:.14em;font-size:13px;font-weight:500}
+.head{position:absolute;left:var(--px);right:var(--px);top:62px}
+.kicker{font-size:13px;line-height:18px;letter-spacing:.16em;color:var(--lime);font-weight:500;margin-bottom:6px}
+.slide h2{font-size:40px;line-height:50px;font-weight:700;letter-spacing:-.012em}
+.lede{font-size:20px;line-height:30px;color:var(--muted);margin-top:6px;max-width:980px}
+.body{position:absolute;left:var(--px);right:var(--px);top:196px;bottom:66px}
+.foot{position:absolute;left:var(--px);right:140px;bottom:14px;display:flex;gap:20px;align-items:center;color:var(--faint);font-size:13px;line-height:18px}
+.foot .src{flex:1}
+.legend{display:flex;gap:6px;align-items:center;white-space:nowrap;flex:none}
+
+/* ---- 카드·격자 ---- */
+.g{display:grid;gap:16px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.g21{grid-template-columns:2fr 1fr}.g12{grid-template-columns:1fr 2fr}
+.card{background:var(--card);border:1px solid var(--card-line);border-radius:10px;padding:16px 20px}
+.card h3{font-size:21px;line-height:30px;font-weight:600;margin-bottom:6px}
+.card p,.card li{font-size:18px;line-height:27px}
+.card ul{list-style:none}
+.card li{padding-left:16px;position:relative;margin:3px 0}
+.card li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:2px;background:var(--accent)}
+.card.lime{border-top:3px solid var(--lime)}
+.card.acc{border-top:3px solid var(--accent)}
+.card.dash{border-style:dashed;border-color:rgba(95,199,220,.55)}
+.card.solid{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+.card.solid .cap,.card.solid p{color:var(--lime-ink)}
+.muted{color:var(--muted)}
+.cap{font-size:15px;line-height:22px;color:var(--muted)}
+.lab{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:500;margin-bottom:4px}
+.num{font-size:64px;line-height:68px;font-weight:300;letter-spacing:-.02em}
+.num small{font-size:22px;font-weight:400;color:var(--muted);letter-spacing:0;margin-left:4px}
+.num.lime{color:var(--lime)}.num.acc{color:var(--accent)}
+.stat{text-align:left}
+.stat .cap{margin-top:4px}
+.rule{height:1px;background:var(--line);margin:14px 0}
+b,strong{font-weight:600}
+.hl{color:var(--lime);font-weight:600}
+.ac{color:var(--accent);font-weight:600}
+
+/* ---- 태그: 색이 아니라 글자로도 구분 ---- */
+.tag{display:inline-block;font-size:13px;line-height:19px;font-weight:600;padding:1px 9px;border-radius:999px;margin-left:6px;vertical-align:middle;white-space:nowrap;letter-spacing:.02em}
+.tag.ok{background:var(--accent);color:var(--accent-ink)}
+.tag.mock{background:rgba(255,255,255,.13);color:var(--ink)}
+.tag.plan{border:1.5px dashed var(--accent);color:var(--accent)}
+.tag.na{border:1.5px solid var(--faint);color:var(--muted)}
+
+/* ---- 표 ---- */
+table.t{width:100%;border-collapse:collapse;font-size:17px;line-height:25px}
+table.t th{color:var(--accent);font-weight:500;font-size:13px;letter-spacing:.1em;text-align:left;border-bottom:1px solid var(--line);padding:6px 12px}
+table.t td{border-bottom:1px solid rgba(255,255,255,.08);padding:9px 12px;vertical-align:top}
+table.t.sm{font-size:15px;line-height:22px}
+table.t.sm td{padding:7px 10px}
+table.t td:first-child{font-weight:500}
+table.t .arrow{color:var(--accent);padding:0 6px}
+
+/* ---- 흐름 도식: 원 번호 + 연결선 ---- */
+.flow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;position:relative}
+.flow::before{content:"";position:absolute;left:5%;right:5%;top:19px;height:2px;background:linear-gradient(90deg,rgba(95,199,220,.15),var(--accent),rgba(95,199,220,.15))}
+.st{position:relative;text-align:center;padding:0 8px}
+.st .n{width:40px;height:40px;border-radius:50%;background:var(--bg-0);border:2px solid var(--accent);color:var(--accent);display:grid;place-items:center;margin:0 auto 10px;font-weight:600;position:relative;z-index:1}
+.st h3{font-size:19px;line-height:26px;font-weight:600}
+.st p{font-size:15px;line-height:22px;color:var(--muted);margin-top:2px}
+.st .who{display:inline-block;margin-top:8px;padding:1px 10px;border-radius:999px;background:rgba(215,243,74,.14);color:var(--lime);font-size:13px;line-height:20px;font-weight:500}
+.st.last .n{background:var(--lime);border-color:var(--lime);color:var(--lime-ink)}
+
+/* ---- 점 막대(몇 명 중 몇 명) ---- */
+.dots{display:flex;gap:6px;align-items:center}
+.dots i{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.14)}
+.dots i.f{background:var(--accent)}
+.dots i.f.l{background:var(--lime)}
+.pat{display:grid;grid-template-columns:1fr auto 74px;gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:17px}
+.pat b{text-align:right;font-weight:300;font-size:26px;color:var(--ink)}
+
+/* ---- 인용 ---- */
+.quote{border-left:3px solid var(--accent);background:var(--card);border-radius:0 10px 10px 0;padding:14px 18px}
+.quote q{display:block;font-size:19px;line-height:29px;quotes:"“" "”"}
+.quote cite{display:block;margin-top:6px;font-style:normal;color:var(--muted);font-size:14px;line-height:20px}
+
+/* ---- 캡처: 밝은 앱 화면이 어두운 바탕에서 떠오르게 ---- */
+.frame{margin:0;border-radius:8px;overflow:hidden;background:#eef4f9;box-shadow:0 22px 50px rgba(0,0,0,.5),0 0 0 1px rgba(95,199,220,.4);display:flex;flex-direction:column}
+.frame img{display:block;width:100%;height:auto;min-height:0}
+.frame figcaption{background:var(--bg-0);color:var(--muted);font-size:13px;line-height:18px;padding:6px 10px;border-top:1px solid var(--line)}
+.frame.fit img{flex:1;height:0;min-height:0;object-fit:cover;object-position:top left}
+.ph{border:1.5px dashed rgba(95,199,220,.6);border-radius:8px;background:rgba(95,199,220,.06);color:var(--muted);display:grid;place-items:center;text-align:center;padding:12px;font-size:15px;line-height:22px}
+.ph b{display:block;color:var(--accent);font-weight:600;letter-spacing:.06em;font-size:13px;margin-bottom:2px}
+.pill{display:inline-block;padding:1px 12px;border-radius:999px;border:1px solid var(--line);font-size:15px;line-height:24px;color:var(--ink)}
+.roles{display:flex;gap:8px;margin-top:10px}
+.roles span{flex:1;border:1px solid var(--card-line);background:var(--card);border-radius:8px;padding:4px 10px;font-size:14px;line-height:22px;white-space:nowrap}
+.roles b{color:var(--accent)}
+iframe.embed{border:0;width:1280px;height:720px;transform-origin:0 0;background:#fff;display:block}
+.embedwrap{overflow:hidden;position:relative;border-radius:8px;background:#fff;box-shadow:0 22px 50px rgba(0,0,0,.5),0 0 0 1px rgba(95,199,220,.4)}
+
+/* ---- 표지 ---- */
+.cover-title{font-size:92px;line-height:96px;font-weight:300;letter-spacing:-.03em}
+.cover-title b{color:var(--accent);font-weight:300}
+.cover-sub{font-size:27px;line-height:38px;font-weight:500;margin-top:18px;max-width:560px}
+.cover-meta{margin-top:28px;font-size:17px;line-height:28px;color:var(--muted)}
+.cover-meta b{color:var(--ink)}
+.bar-accent{width:72px;height:4px;background:var(--lime);margin-top:26px}
+
+pre.code{font-family:"JetBrains Mono",Consolas,monospace;font-size:15px;line-height:23px;background:rgba(255,255,255,.06);border-left:3px solid var(--accent);padding:12px 18px;white-space:pre-wrap;color:var(--ink);border-radius:0 8px 8px 0}
+
+/* ---- 인쇄: 장마다 한 쪽 ---- */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff;height:auto}
+  .viewport{position:static;display:block;overflow:visible}
+  .stage{transform:none!important;height:auto}
+  .slide{display:block!important;position:relative;width:1280px;height:720px;page-break-after:always}
+  .hud,.notes-panel{display:none!important}
+}
+
+/* ---- 3차 보강: 글 대신 칩·타일·화살표 ---- */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-block;padding:2px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:16px;line-height:26px;white-space:nowrap}
+.chip.ac{border-color:rgba(95,199,220,.6);color:var(--accent)}
+.chip.lm{background:rgba(215,243,74,.14);border-color:rgba(215,243,74,.5);color:var(--lime)}
+.chip.no::before{content:"✕ ";color:var(--warn);font-weight:600}
+.chip.yes::before{content:"✓ ";color:var(--accent);font-weight:600}
+.tile{background:var(--card);border:1px solid var(--card-line);border-radius:10px;padding:8px 14px}
+.tile .num{font-size:34px;line-height:38px}
+.tile .cap{font-size:14px;line-height:18px}
+.arrowc{display:grid;place-items:center;color:var(--accent);font-size:30px;line-height:1}
+.lane{display:grid;grid-template-columns:1fr 34px 1fr 34px .8fr;align-items:stretch}
+.lane .card{padding:12px 16px}
+.lane .card h3{font-size:20px;line-height:28px;margin-bottom:8px}
+
+/* 한글은 단어 중간에서 줄을 바꾸지 않는다 */
+.slide{word-break:keep-all;overflow-wrap:break-word}
+.chip,.tag{word-break:keep-all}
+
+/* ---- 4차: 픽토그램·간지·차트·세로 단계 ---- */
+.ico{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:middle;color:var(--accent)}
+.ico.lg{width:40px;height:40px}.ico.xl{width:168px;height:168px;stroke-width:1}
+.ibox{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:rgba(95,199,220,.12);flex:none}
+.lab .ico{width:20px;height:20px;margin-right:6px;margin-top:-3px}
+.h3i{display:flex;align-items:center;gap:10px}
+
+.dv-no{font-size:150px;line-height:140px;font-weight:200;color:var(--accent);letter-spacing:-.04em}
+.dv-title{font-size:58px;line-height:68px;font-weight:700;letter-spacing:-.02em;margin-top:8px}
+.dv-sub{font-size:24px;line-height:36px;color:var(--muted);margin-top:10px}
+.rail{display:flex;gap:10px;position:absolute;left:var(--px);bottom:54px}
+.rail span{padding:4px 16px;border-radius:999px;border:1px solid var(--line);font-size:15px;line-height:24px;color:var(--faint)}
+.rail span.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+
+.pbar{height:12px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden;display:flex;margin-top:8px}
+.pbar i{display:block;height:100%}
+.pbar .a{background:var(--accent)}.pbar .l{background:var(--lime)}.pbar .w{background:var(--warn)}.pbar .f{background:var(--faint)}
+.hrow{display:grid;grid-template-columns:92px 1fr 40px;gap:12px;align-items:center;font-size:16px;line-height:24px;margin:7px 0}
+.hrow .pbar{margin:0;height:16px}.hrow b{font-weight:600;text-align:right}
+
+.vs{display:grid;gap:0;margin-top:6px}
+.vs>div{position:relative;padding:1px 0 9px 28px;font-size:15px;line-height:21px}
+.vs>div::before{content:"";position:absolute;left:3px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);background:var(--bg-0)}
+.vs>div::after{content:"";position:absolute;left:8px;top:20px;bottom:-6px;width:2px;background:rgba(95,199,220,.4)}
+.vs>div:last-child::after{display:none}
+.vs>div.on::before{background:var(--accent)}
+.vs>div.end::before{background:var(--lime);border-color:var(--lime)}
+.vs small{color:var(--muted);font-size:13px;margin-left:4px}
+
+.asis,.tobe{display:grid;grid-template-columns:76px 1fr 150px;gap:12px;align-items:center}
+.rowtag{font-size:13px;letter-spacing:.14em;font-weight:600;color:var(--muted)}
+.tobe .rowtag{color:var(--lime)}
+.steps{display:flex;align-items:center;gap:8px}
+.sbox{flex:1;border:1px solid var(--card-line);background:var(--card);border-radius:10px;padding:10px 8px;text-align:center;font-size:16px;line-height:22px;display:grid;gap:6px;justify-items:center}
+.sbox .ico{width:26px;height:26px}
+.tobe .sbox{border-color:rgba(215,243,74,.4)}
+.tobe .sbox .ico{color:var(--lime)}
+.kpi{text-align:center;border-radius:10px;padding:10px 6px}
+.asis .kpi{background:rgba(240,160,32,.12);border:1px solid rgba(240,160,32,.4)}
+.tobe .kpi{background:rgba(215,243,74,.12);border:1px solid rgba(215,243,74,.45)}
+.kpi b{display:block;font-size:26px;line-height:32px;font-weight:600}
+.kpi span{font-size:13px;color:var(--muted)}

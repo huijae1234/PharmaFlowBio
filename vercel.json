@@ -1,0 +1,14 @@
+{
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": null,
+  "regions": [
+    "icn1"
+  ],
+  "crons": [
+    {
+      "path": "/api/briefing",
+      "schedule": "0 23 * * 0-4"
+    }
+  ]
+}

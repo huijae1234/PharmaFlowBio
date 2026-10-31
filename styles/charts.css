@@ -1,0 +1,118 @@
+/* 홈 도식 (도넛·주별 이슈·이탈 순위). 토큰은 tokens.css */
+.home-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+@media (min-width: 1100px) { .home-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* 도넛 */
+.donut-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-5); }
+.donut { position: relative; width: 148px; height: 148px; flex: none; }
+.donut svg { width: 100%; height: 100%; transform: none; }
+.donut-track { stroke: #e3ecf3; }
+.donut-seg { stroke-linecap: butt; }
+.donut-seg--in_production { stroke: var(--status-in_production); }
+.donut-seg--in_testing { stroke: var(--status-in_testing); }
+.donut-seg--on_hold { stroke: var(--status-on_hold); }
+.donut-seg--releasable { stroke: var(--status-releasable); }
+.donut-seg--shipped { stroke: var(--status-shipped); }
+.donut-seg--discarded { stroke: var(--status-discarded); }
+.donut-center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.donut-total { font-size: var(--text-display); line-height: 1; }
+.donut-center .muted { font-size: var(--text-xs); }
+.legend--stack { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); margin: 0; min-width: 9rem; }
+
+/* 범례 한 줄 */
+.legend--inline { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin: var(--space-2) 0 0; padding: 0; list-style: none; font-size: var(--text-sm); }
+.legend--inline li { display: flex; align-items: center; gap: var(--space-2); }
+.swatch--open { background: var(--color-primary-strong); }
+.swatch--close { background: var(--color-accent); border: 1px solid #9fbb1c; }
+.swatch--spec { background: var(--badge-danger-text); }
+.swatch--alert { background: #f0a020; }
+
+/* 주별 이슈 막대 */
+.wk-chart svg { width: 100%; height: auto; max-height: 190px; }
+.wk-open { fill: var(--color-primary-strong); }
+.wk-close { fill: var(--color-accent); stroke: #9fbb1c; stroke-width: 0.6; }
+.wk-num { font-size: 9px; fill: var(--color-text); font-weight: 600; }
+.wk-label { font-size: 8.5px; fill: var(--color-text-muted); }
+
+/* 이탈 순위 막대 */
+.rank-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.rank-list li { display: grid; grid-template-columns: minmax(5.5rem, 0.8fr) minmax(0, 2fr) auto; gap: var(--space-3); align-items: center; }
+.rank-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank-bar { display: flex; height: 12px; border-radius: var(--radius-pill); background: #e3ecf3; overflow: hidden; }
+.rank-seg--spec { background: var(--badge-danger-text); }
+.rank-seg--alert { background: #f0a020; }
+.rank-num { font-weight: 300; font-size: var(--text-lg); }
+
+/* 보류 로트 카드의 거르기 두 개는 한 줄에 */
+.card-tools .select--sm { max-width: 10.5rem; text-overflow: ellipsis; }
+
+/* 제품 화면: 로트 이니셜 */
+.initials-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.initials-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3); }
+.initials-key { min-width: 3rem; font-size: var(--text-lg); }
+.mini-owner { color: var(--color-text); font-weight: 600; }
+
+/* 홈: 두 줄. 윗줄은 큰 칸 2개(지금 할 일 · 보류 로트), 아랫줄은 같은 크기 칸 4개(상태 도넛 · 주별 이슈 · 이탈 순위 · 회수 공지).
+   폭 1200px 미만은 2칸씩, 700px 미만은 한 칸씩. 카드는 한 줄 높이를 채워 빈칸이 남지 않는다 */
+.content:has(.home) { max-width: 1760px; }
+.home-head, .home-footer { grid-column: 1 / -1; }
+.home-grid, .home-main, .home-side, .home-row { display: contents; }
+.home { align-items: stretch; grid-template-columns: minmax(0, 1fr); }
+.card--recall { order: 10; }
+.home > .home-footer { order: 11; }
+.card--recall .line-clamp { -webkit-line-clamp: 2; }
+@media (min-width: 700px) {
+  .home { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card--tasks, .home-side > .card:first-child { grid-column: span 1; }
+}
+@media (min-width: 1200px) {
+  .home { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .card--tasks { grid-column: span 2; }
+  .home-side > .card:first-child { grid-column: span 2; }
+  .card--recall { grid-column: span 1; }
+}
+
+/* 로트 공정 단계: 단계 동그라미 바로 아래에 그 단계 내용 (넓은 화면). 좁은 화면은 세로 */
+.step-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--steps, 5), minmax(210px, 1fr)); overflow-x: auto; }
+.step-flow-item { display: grid; grid-template-rows: auto auto auto 1fr; justify-items: center; padding: 0 var(--space-2); }
+.step-flow-item .step-card { justify-self: stretch; align-self: stretch; margin-top: var(--space-3); text-align: left; }
+@media (max-width: 899px) {
+  .step-flow { grid-template-columns: minmax(0, 1fr); }
+  /* 세로: 동그라미 아래로 옅은 선이 이어져 한 흐름으로 보이게 */
+  .step-flow-item { position: relative; grid-template-columns: 28px minmax(0, 1fr); grid-template-rows: auto auto 1fr; justify-items: start; column-gap: var(--space-3); padding: 0 0 var(--space-4); }
+  .step-flow-item .stepper-dot { grid-row: 1 / 3; }
+  .step-flow-item .stepper-name { grid-column: 2; }
+  .step-flow-item .stepper-status { grid-column: 2; }
+  .step-flow-item .step-card { grid-column: 2; margin-top: var(--space-2); }
+  .step-flow-item::before { content: ""; display: block; position: absolute; top: 14px; bottom: -14px; left: 13px; right: auto; width: 2px; height: auto; background: #cfdde8; }
+  .step-flow-item:first-child::before { display: block; }
+  .step-flow-item:last-child::before { display: none; }
+}
+.step-of { font-size: var(--text-xs); color: var(--color-text-muted); }
+.step-of b { color: var(--color-ink); font-weight: 700; }
+
+/* 옆 메뉴 묶음 이름: 눌러 가는 메뉴가 아니라 구분 제목이라는 게 보이게 (작은 글씨, 연한 색, 옆으로 이어지는 선, 눌러지지 않음) */
+.nav-group { margin-top: var(--space-4); }
+.nav-group:first-of-type { margin-top: var(--space-2); }
+.nav-group-label { margin: 0 0 var(--space-1); padding: 0 var(--space-3); font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; color: #7f95a8; cursor: default; user-select: none; }
+.nav-group .nav-list { margin-left: var(--space-3); padding-left: var(--space-1); border-left: 1px solid #d3e1eb; }
+
+/* 홈 아랫줄: 카드는 한 줄 높이를 채운다(기존 틀 — 2026-10-29 사용자 "디자인 틀 건들지 말라", 7d06523의 "각자 높이"는 되돌림).
+   회수 공지는 안에서 스크롤 (넓은 화면은 줄 높이에 맞추고, 좁은 화면은 높이 상한) */
+.recall-scroll { overflow-y: auto; padding-right: var(--space-2); }
+.recall-link { display: inline-block; margin-top: var(--space-2); }
+.wk-link { display: block; color: inherit; text-decoration: none; border-radius: var(--radius); }
+.wk-link:hover, .wk-link:focus-visible { background: var(--color-hover); }
+@media (max-width: 1199px) { .recall-scroll { max-height: 22rem; } }
+@media (min-width: 1200px) {
+  .card--recall { contain: size; align-self: stretch; display: flex; flex-direction: column; min-height: 0; }
+  .card--recall .public-panel { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; }
+  .card--recall .recall-scroll { flex: 1 1 0; min-height: 0; }
+}
+
+/* 로트·작업지시 목록 위 줄: 상태 칩은 왼쪽, 제품·정렬·검색은 오른쪽 한 줄 (작업지시 화면처럼).
+   폭이 모자라 줄이 바뀌어도 오른쪽 묶음은 오른쪽에 붙는다 */
+.select--product { max-width: 12.5rem; text-overflow: ellipsis; }
+.toolbar--spread > .toolbar { margin-left: auto; flex-wrap: nowrap; }
+.toolbar--spread > .toolbar .search-box { flex: 0 1 220px; width: 220px; }
+.toolbar--spread > .toolbar .search-box .input { width: 0; }

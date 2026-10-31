@@ -1,0 +1,65 @@
+/* 공공데이터 화면 (spec 003): 제품 등록 검색, 허가정보·회수 이력. 토큰은 tokens.css */
+.public-panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); justify-items: start; } /* 칸이 넓은 표에 밀려 가로로 넘치지 않게. 넓은 표는 .table-wrap 안에서 옆으로 넘긴다 (디자인 기본선 6) */
+.public-panel > .table-wrap, .public-panel > :has(.table-wrap) { justify-self: stretch; }
+.search-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: end; }
+.search-row .field { flex: 1 1 200px; }
+.permit-results { max-height: 50vh; overflow-y: auto; }
+.permit-results input[type="radio"] { width: 20px; height: 20px; }
+.info-list { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-1) var(--space-4); margin: 0; }
+.info-list dt { color: var(--color-text-muted); }
+.info-list dd { margin: 0; }
+/* spec 006: 백신만 체크, 출처 줄 */
+.check-row { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; cursor: pointer; }
+.check-row input[type="checkbox"] { width: 20px; height: 20px; }
+.source-line { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
+.line-clamp { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+/* spec 006 FR-002 허가정보 탭 안내, FR-003 마지막 정상 결과 (지금 결과와 헷갈리지 않게 테두리로 묶음) */
+.public-notice { margin: 0 0 var(--space-3); padding: var(--space-2) var(--space-3); border-radius: var(--radius); background: var(--badge-info-bg); color: var(--badge-info-text); font-size: var(--text-sm); }
+.last-good { justify-self: stretch; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); padding: var(--space-3); border: 1px dashed var(--color-border); border-radius: var(--radius); }
+.last-good-note { margin: 0; color: var(--badge-warning-text); font-weight: 600; font-size: var(--text-sm); }
+
+/* spec 021: 공개 규제 현황 칸 */
+.regulatory-flag { margin: 0 0 var(--space-3); }
+.regulatory-finding { margin: 0 0 var(--space-2); }
+.regulatory-finding p { margin: var(--space-1) 0 0; }
+.subsection-title { margin: var(--space-3) 0 var(--space-2); font-size: var(--text-md); font-weight: 600; }
+
+/* spec 022: AI 참고 의견 칸 */
+.ai-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-2); }
+.ai-head .section-title { margin: 0; }
+.ai-panel ul { margin: 0 0 var(--space-3); padding-left: 1.25em; }
+.ai-claims { margin: 0; padding-left: 1.25em; display: grid; gap: var(--space-3); }
+.ai-claim p { margin: 0 0 var(--space-1); }
+.ai-claim--flagged { border-left: 3px solid var(--color-danger); padding-left: var(--space-2); }
+.ai-claim summary { display: flex; align-items: center; min-height: 48px; cursor: pointer; } /* 눌러서 여는 것도 48px */
+/* spec 023: 이슈 상세 안에 들어가는 AI 칸 */
+.ai-panel--inline { display: grid; gap: var(--space-2); margin-top: var(--space-3); padding: var(--space-3); border: 1px solid var(--color-border); border-radius: 8px; }
+.ai-panel--inline .toolbar { align-items: flex-end; }
+.ai-panel select { min-height: 48px; }
+.ai-codecheck { border-left: 3px solid var(--color-warning); padding-left: var(--space-2); }
+.ai-codecheck p, .ai-codecheck ul { margin: 0 0 var(--space-2); }
+.ai-quote { margin: 0 0 var(--space-1); padding-left: var(--space-2); border-left: 3px solid var(--color-border); color: var(--color-text-muted); overflow-wrap: anywhere; }
+.ai-draft-text { margin: 0; padding: var(--space-2); border: 1px dashed var(--color-border); border-radius: 6px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ai-stale { margin: 0; }
+/* spec 024: 접어 두는 AI 칸, 업무 찾아보기 */
+.ai-fold { margin-top: var(--space-3); }
+.ai-fold > summary { display: flex; align-items: center; min-height: 48px; cursor: pointer; font-weight: 600; }
+.ask-box { display: grid; gap: var(--space-2); }
+.ask-form { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: flex-end; }
+.ask-form .field { flex: 1 1 220px; margin: 0; }
+.ask-form .input, .ask-box .button { min-height: 48px; }
+.ask-examples { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.ask-list { margin: 0; padding-left: 1.25em; display: grid; gap: var(--space-2); }
+.ask-list li a { min-height: 32px; overflow-wrap: anywhere; }
+.ai-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; }
+.ai-panel .button, .ai-chip { min-height: 48px; } /* 디자인 규칙: 눌러야 하는 것은 48px 이상 */
+.ai-chip { display: inline-flex; align-items: center; padding: 0 var(--space-3); border: 1px solid var(--color-border); border-radius: 6px; font-size: var(--text-sm); }
+.ai-chip--plain { min-height: 32px; border-style: dashed; color: var(--color-text-muted); }
+/* 좁은 화면(휴대폰): 근거 표를 옆으로 밀지 않고 줄마다 항목·값·상태를 아래로 쌓는다 */
+@media (max-width: 520px) {
+  .ai-evidence, .ai-evidence tbody, .ai-evidence tr, .ai-evidence td { display: block; width: auto; }
+  .ai-evidence thead { position: absolute; left: -9999px; }
+  .ai-evidence tr { padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }
+  .ai-evidence td { padding: 2px 0; border: 0; white-space: normal; overflow-wrap: anywhere; }
+  .ai-evidence td:first-child { font-weight: 600; }
+}

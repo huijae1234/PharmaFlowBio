@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PharmaFlow Bio 프로젝트 소개</title>
+<style>
+  :root {
+    --primary: #0958d9; --success: #15803d; --warning: #b45309; --danger: #b91c1c;
+    --text: #111827; --muted: #4b5563; --border: #e5e7eb; --surface: #ffffff; --page: #f5f7fa;
+    --info-bg: #e6f0ff; --success-bg: #e8f7ee; --warning-bg: #fff4e0; --danger-bg: #fdecec; --neutral-bg: #f1f3f5;
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #8ab4ff; --success: #6ee7a0; --warning: #fbbf6a; --danger: #fca5a5;
+      --text: #e5e7eb; --muted: #a1a1aa; --border: #2f3542; --surface: #171b22; --page: #0f1217;
+      --info-bg: #1b2a44; --success-bg: #14301f; --warning-bg: #3a2a10; --danger-bg: #3a1717; --neutral-bg: #222833;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--text);
+    font: 16px/1.7 "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 30px; margin: 0 0 4px; line-height: 1.3; }
+  h2 { font-size: 21px; margin: 0 0 12px; }
+  h3 { font-size: 17px; margin: 20px 0 8px; }
+  p { margin: 0 0 10px; }
+  .muted { color: var(--muted); }
+  .mono { font-family: "JetBrains Mono", Consolas, monospace; }
+  section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; margin: 16px 0; }
+  nav.toc ol { columns: 2; column-gap: 32px; margin: 0; padding-left: 22px; }
+  nav.toc a { color: var(--primary); }
+  .lead { font-size: 18px; }
+  .callout { border-left: 4px solid var(--primary); background: var(--info-bg); padding: 12px 14px; border-radius: 0 var(--radius) var(--radius) 0; margin: 12px 0; }
+  .callout.warn { border-color: var(--warning); background: var(--warning-bg); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .card { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+  .card h3 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .badge { display: inline-block; border-radius: 999px; padding: 1px 10px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .ok { background: var(--success-bg); color: var(--success); }
+  .alert { background: var(--warning-bg); color: var(--warning); }
+  .spec { background: var(--danger-bg); color: var(--danger); }
+  .info { background: var(--info-bg); color: var(--primary); }
+  .gray { background: var(--neutral-bg); color: var(--muted); }
+  ol.story { padding-left: 0; list-style: none; counter-reset: s; margin: 0; }
+  ol.story > li { counter-increment: s; position: relative; padding: 0 0 16px 44px; }
+  ol.story > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--primary); color: #fff; font-weight: 700; display: grid; place-items: center; font-size: 14px; }
+  .who { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .scale { display: grid; grid-template-columns: 1fr 2fr 1fr; text-align: center; font-size: 14px; border-radius: var(--radius); overflow: hidden; margin: 12px 0 6px; }
+  .scale div { padding: 10px 6px; }
+  .scale .s { background: var(--danger-bg); color: var(--danger); }
+  .scale .a { background: var(--warning-bg); color: var(--warning); }
+  .scale .p { background: var(--success-bg); color: var(--success); }
+  .arch { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; align-items: stretch; }
+  .arch .card { text-align: center; }
+  ul { padding-left: 20px; margin: 0 0 10px; }
+  li { margin-bottom: 5px; }
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 24px; }
+  @media (max-width: 600px) { nav.toc ol { columns: 1; } h1 { font-size: 25px; } section { padding: 16px; } }
+  @media print { body { background: #fff; } section { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>PharmaFlow Bio</h1>
+  <p class="lead">백신 제조 로트의 품질 이탈을 처음부터 출하 검토까지 한곳에서 추적하는 웹 앱</p>
+  <p class="muted">팀 공유용 프로젝트 소개 · 2026-10-26 기준 · 발표 2026-10-27(화)</p>
+</header>
+
+<section>
+  <nav class="toc" aria-label="목차">
+    <h2>목차</h2>
+    <ol>
+      <li><a href="#what">한눈에 보기</a></li>
+      <li><a href="#why">왜 만들었나</a></li>
+      <li><a href="#who">누가 쓰나</a></li>
+      <li><a href="#terms">꼭 알아야 할 말</a></li>
+      <li><a href="#story">로트 하나의 이야기</a></li>
+      <li><a href="#screens">화면 안내</a></li>
+      <li><a href="#rules">앱이 지키는 규칙</a></li>
+      <li><a href="#public">실제 공공데이터 연결</a></li>
+      <li><a href="#tech">어떻게 동작하나</a></li>
+      <li><a href="#not">하지 않는 것</a></li>
+      <li><a href="#status">지금 상태와 남은 일</a></li>
+      <li><a href="#try">직접 써 보기</a></li>
+    </ol>
+  </nav>
+</section>
+
+<section id="what">
+  <h2>1. 한눈에 보기</h2>
+  <p>백신 공장에서는 만든 묶음(<strong>로트</strong>)마다 품질 시험을 합니다. 시험 결과가 기준을 벗어나면 원인을 조사하고, 품질에 어떤 영향이 있는지 평가하고, 재시험 같은 조치를 하고, 품질 책임자(QA 관리자)가 검토·승인한 뒤에야 그 로트를 출하할지 정합니다.</p>
+  <p><strong>PharmaFlow Bio</strong>는 이 과정을 한 곳에 모읍니다. 시험값을 넣는 순간 앱이 기준을 벗어났는지 판정하고, 벗어났으면 "품질 이슈"를 자동으로 엽니다. 그 이슈가 평가 → 검토 → 조치 → 종료 → 출하 검토까지 어디쯤 와 있는지, 누가 언제 무엇을 근거로 승인했는지 모두 기록되고 한 화면에서 보입니다.</p>
+  <div class="callout"><strong>목표:</strong> QA 관리자가 로트 하나의 상태를 확인하고 내부 출하 검토를 하는 데 걸리는 시간을 약 30분(여러 기록과 메일을 뒤짐)에서 <strong>1분 안</strong>으로 줄이는 것. (30분은 검증할 가설)</div>
+  <div class="callout warn">회사·로트·시험값·시험 규격·관리기준은 모두 <strong>교육용 가상 자료</strong>입니다. 식약처 허가정보와 회수·판매중지 정보만 실제 공개 자료를 불러와 씁니다. 이 앱의 판단은 회사 내부 검토이며 <strong>국가출하승인이 아닙니다.</strong></div>
+</section>
+
+<section id="why">
+  <h2>2. 왜 만들었나</h2>
+  <p>가상 백신 제조사를 가정하고, 품질 이탈이 생겼을 때 지금 어떻게 일하는지(As-Is)를 그려 보면 이렇습니다.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>단계</th><th>지금 방식 (As-Is)</th><th>앱을 쓰면 (To-Be)</th></tr></thead>
+    <tbody>
+      <tr><td>이탈 발견</td><td>시험 담당자가 기록지에 적고 기준서와 눈으로 비교. 벗어나면 메일·전화로 QA에 알림 → 빠뜨리기 쉬움</td><td>값을 넣는 순간 자동 판정, 품질 이슈 자동 생성, 규격 이탈이면 로트 자동 보류</td></tr>
+      <tr><td>영향 평가</td><td>워드 양식에 측정값·기준을 옮겨 적고 메일로 첨부</td><td>이슈 화면에서 작성. 로트·측정값·적용 기준은 자동으로 붙어 있음</td></tr>
+      <tr><td>승인</td><td>메일함에서 요청서를 찾아 회신. 누가 언제 승인했는지 흩어짐</td><td>"승인 대기" 한 화면에서 처리, 모든 결정이 이력으로 남음</td></tr>
+      <tr><td>출하 전 확인</td><td>시험 기록·생산 기록·평가서·메일·엑셀을 따로 확인 (약 30분, 가장 불안한 순간)</td><td>로트 상세 위쪽 요약만 보면 됨. 막히는 이유가 있으면 앱이 글로 알려 주고 출하를 막음</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">핵심 질문: "이탈 발생부터 출하 검토까지를 여러 기록을 뒤지지 않고 로트 하나 기준으로 추적하려면 어떻게 해야 하는가?"</p>
+</section>
+
+<section id="who">
+  <h2>3. 누가 쓰나</h2>
+  <p>구글 계정으로 로그인합니다. 처음 들어온 사람은 <strong>열람자</strong>(읽기만 가능)가 되고, QA 관리자가 역할을 정해 줍니다. 역할마다 첫 화면과 할 수 있는 일이 다릅니다.</p>
+  <div class="grid">
+    <div class="card"><h3>QA 관리자</h3><p class="who">첫 화면: 관리자 대시보드</p><p>핵심 사용자. 영향 평가와 조치 요청을 검토·승인하고, 시험 규격·관리기준을 정하고, 마지막에 로트의 내부 출하 검토(출하 가능 / 폐기)를 합니다. 사용자 역할 지정과 관리 메뉴도 이 역할만 씁니다.</p></div>
+    <div class="card"><h3>QC 시험 담당자</h3><p class="who">첫 화면: 품질시험 홈</p><p>로트의 시험값(역가, 엔도톡신, pH 등)을 넣습니다. 이탈이 나면 영향 평가를 쓰고 조치를 요청하며, 배정받은 재시험의 결과를 넣습니다.</p></div>
+    <div class="card"><h3>생산 담당자</h3><p class="who">첫 화면: 제조공정 홈</p><p>로트를 등록하고 공정 조건(배양 온도, 보관 온도, 설비 상태)을 넣습니다. 필요하면 사유를 적어 로트를 직접 보류합니다. 공정 이탈의 평가·조치도 씁니다.</p></div>
+    <div class="card"><h3>열람자</h3><p class="who">첫 화면: 로트 목록</p><p>역할을 받기 전 상태. 모든 화면을 볼 수만 있고 버튼이 없습니다. 인허가·공급 담당자도 따로 역할을 만들지 않고 읽기 화면으로 정보를 봅니다.</p></div>
+  </div>
+</section>
+
+<section id="terms">
+  <h2>4. 꼭 알아야 할 말</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>말</th><th>뜻</th></tr></thead>
+    <tbody>
+      <tr><td><strong>로트</strong></td><td>같은 조건으로 한 번에 만든 제품 묶음. 품질 확인과 출하 결정의 단위. 예: <span class="mono">VX-2610-002</span></td></tr>
+      <tr><td><strong>시험 규격</strong></td><td>시험 항목마다 정해진 허용 범위. 벗어나면 그대로는 쓸 수 없음. 예: 역가 80~125%</td></tr>
+      <tr><td><strong>사내 관리기준</strong></td><td>규격보다 좁게 잡은 회사 내부 경보 범위. 벗어나도 규격 안이지만 원인을 확인해야 함. 예: 역가 90~115%. 항목에 따라 없을 수도 있음</td></tr>
+      <tr><td><strong>판정</strong></td><td>측정값을 기준과 비교한 결과. <span class="badge ok">정상</span> <span class="badge alert">관리기준 이탈</span> <span class="badge spec">규격 이탈</span> 세 단계</td></tr>
+      <tr><td><strong>기준 버전</strong></td><td>기준을 고칠 때마다 1씩 오르는 번호(v1, v2…). 측정값마다 "그때 어떤 기준(몇 번째 버전)으로 판정했는지"를 함께 남겨, 기준이 바뀌어도 예전 판정의 근거를 설명할 수 있음</td></tr>
+      <tr><td><strong>품질 이슈</strong></td><td>이탈이 생기면 자동으로 열리는 처리 건. 종류는 규격 이탈 / 관리기준 이탈. 처리가 끝나면 닫힘</td></tr>
+      <tr><td><strong>품질 영향 평가</strong></td><td>담당자가 이슈에 대해 이탈 내용·추정 원인·품질 영향·제안 후속 조치·근거를 적어 QA 검토를 받는 기록. 이슈 하나에 하나. <strong>평가 승인은 "평가 내용을 받아들인다"는 뜻이지 사용·출하 승인이 아님</strong></td></tr>
+      <tr><td><strong>보완 요청 / 반려</strong></td><td>QA 관리자가 평가나 요청을 사유와 함께 되돌리는 것. 요청자가 고쳐 다시 제출할 수 있음</td></tr>
+      <tr><td><strong>조치 요청</strong></td><td>이슈를 해결하려고 하는 일. 재시험, 설비 점검, 원료 확인, 로트 폐기 건의. QA가 승인하며 담당자를 배정</td></tr>
+      <tr><td><strong>보류</strong></td><td>로트를 더 진행하지 못하게 멈춘 상태. 규격 이탈이면 자동, 또는 사유를 적어 직접</td></tr>
+      <tr><td><strong>내부 출하 검토</strong></td><td>QA 관리자가 로트를 "출하 가능" 또는 "폐기"로 정하는 회사 내부 결정</td></tr>
+      <tr><td><strong>국가출하승인</strong></td><td>백신을 시장에 내기 전 국가기관이 하는 별도 승인. <strong>이 앱은 하지 않으며 흉내 내지도 않음</strong></td></tr>
+      <tr><td><strong>업무 이력</strong></td><td>누가 언제 무엇을 했는지(값을 넣음, 승인함 등) 자동으로 남는 기록. 화면에서도, 데이터베이스에서도 고치거나 지울 수 없음</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="story">
+  <h2>5. 로트 하나의 이야기</h2>
+  <p>가상 백신 A의 로트 <span class="mono">VX-2610-002</span>로 처음부터 끝까지 따라가 봅니다. 기준은 역가 시험 규격 80~125%, 사내 관리기준 90~115%라고 합시다.</p>
+  <ol class="story">
+    <li><span class="who">QC 시험 담당자 · 품질시험 홈 → 로트 상세 → 시험값 입력</span>
+      <p>역가 항목을 고르면 입력 칸 아래에 "규격 80~125 % · 관리기준 90~115 % · v1 · 교육용 가상 기준"이 보입니다. <strong>85%</strong>를 넣고 저장합니다.</p></li>
+    <li><span class="who">앱이 자동으로</span>
+      <p>85는 규격 안이지만 관리기준 밖이므로 <span class="badge alert">관리기준 이탈</span>로 판정합니다. 품질 이슈(종류: 관리기준 이탈)를 열고, 로트는 보류하지 않습니다. 만약 <strong>79%</strong>였다면 <span class="badge spec">규격 이탈</span> → 이슈를 열고 로트를 <strong>자동 보류</strong>합니다. 어느 쪽이든 판정에 쓴 기준과 버전이 측정값과 함께 저장됩니다.</p></li>
+    <li><span class="who">QC 시험 담당자 · 품질 이슈 상세 → 품질 영향 평가 작성</span>
+      <p>창 위쪽에 로트·발생 시각·측정값·적용 기준이 이미 채워져 있습니다. 이탈 내용, 추정 원인(예: 시료 보관 온도 편차), 품질 영향, 제안 후속 조치(예: 재시험), 근거(문서 번호)를 적어 <strong>검토 요청</strong>합니다.</p></li>
+    <li><span class="who">QA 관리자 · 관리자 대시보드 "승인 대기" → 품질 영향 평가 검토</span>
+      <p>내용을 보고 <strong>승인</strong>, <strong>반려</strong>, <strong>보완 요청</strong> 중 하나를 고릅니다(반려·보완 요청은 사유 필수). 보완 요청을 하면 요청자의 첫 화면에 사유와 함께 뜨고, 요청자가 고쳐 다시 제출합니다. 승인 창에는 "사용·출하 승인이 아닙니다"가 늘 보입니다.</p></li>
+    <li><span class="who">담당자 → QA 관리자 → 배정된 담당자</span>
+      <p>필요하면 조치 요청(재시험)을 등록 → QA 관리자가 승인하며 담당자 배정 → 배정된 담당자가 재시험 결과를 넣습니다. 재시험도 세 단계로 판정되고, 또 이탈이어도 새 이슈를 만들지 않고 같은 이슈에 붙습니다. 관리기준 이탈이던 이슈가 재시험에서 규격 이탈로 나빠지면 이슈 종류가 규격 이탈로 바뀌고 로트가 보류됩니다.</p></li>
+    <li><span class="who">배정됐던 담당자 또는 QA 관리자 · 이슈 닫기</span>
+      <p>조건을 채우면 닫힙니다. 관리기준 이탈: 승인된 영향 평가. 규격 이탈: 승인된 영향 평가 + 완료된 조치. 못 닫으면 이유가 글로 보입니다. 마지막 규격 이탈 이슈가 닫히면 로트는 보류 → 시험 중으로 돌아갑니다.</p></li>
+    <li><span class="who">QA 관리자 · 로트 상세 → 내부 출하 검토</span>
+      <p>위쪽 요약에서 열린 이슈 수, 평가 상태, 다음에 할 일, 최근 이력을 확인하고 "출하 가능" 또는 "폐기"를 정합니다. 열린 이슈가 하나라도 있거나 아직 시험이 끝나지 않은 항목이 있으면 "출하 가능"은 잠기고 이유가 표시됩니다. 창에는 "회사 내부 검토이며 국가출하승인이 아닙니다"가 보입니다.</p></li>
+  </ol>
+  <p class="muted">이 모든 단계가 업무 이력에 자동으로 남아, 나중에 "누가 언제 무엇을 근거로 결정했는지"를 그대로 되짚을 수 있습니다.</p>
+</section>
+
+<section id="screens">
+  <h2>6. 화면 안내</h2>
+  <p>왼쪽 메뉴(휴대폰에서는 위쪽 "메뉴" 버튼)로 이동합니다. 관리 메뉴는 QA 관리자에게만 보입니다.</p>
+
+  <h3>첫 화면</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>화면</th><th>보이는 것</th></tr></thead>
+    <tbody>
+      <tr><td>관리자 대시보드</td><td>승인 대기(조치 요청 + 품질 영향 평가, 오래된 순), 되돌아온 내 요청, 내부 출하 검토 대기 로트(시험 중이고 열린 이슈 없음), 품질 지표(열린 이슈 수·이번 주 규격 이탈 수·평균 처리 일수), 로트 상태별 개수, 보류 로트, 최근 회수 공지(실제 공공데이터)</td></tr>
+      <tr><td>품질시험 홈</td><td>나에게 배정된 조치, 보완 요청·반려된 내 요청, 시험값을 기다리는 로트, 최근 이탈(시험)</td></tr>
+      <tr><td>제조공정 홈</td><td>나에게 배정된 조치, 보완 요청·반려된 내 요청, 생산 중 로트, 최근 이탈(공정)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>로트</h3>
+  <ul>
+    <li><strong>로트 목록</strong>: 로트번호·제품·상태(생산 중 / 시험 중 / 보류 / 출하 가능 / 폐기). 상태로 거르기, 로트 등록.</li>
+    <li><strong>로트 상세</strong>: 위쪽 요약(열린 이슈 수를 종류별로, 영향 평가 상태, 조치 요청 상태, <strong>다음에 할 일</strong>과 담당, 최근 이력 3줄). 버튼: 시험값 입력, 공정 조건 입력, 로트 보류, 내부 출하 검토. 탭: 공정 조건 / 시험 결과(측정값·판정·그때 기준과 버전) / 품질 이슈 / 업무 이력.</li>
+  </ul>
+
+  <h3>품질 이슈</h3>
+  <ul>
+    <li><strong>품질 이슈 목록</strong>: 로트번호, 발생 구분(시험·공정), 종류(규격 이탈·관리기준 이탈), 이탈 항목, 열림/닫힘. 상태·구분·종류로 거르기.</li>
+    <li><strong>품질 이슈 상세</strong>: 맨 위 <strong>단계 표시줄</strong>(이탈 → 영향 평가 → 조치 → 이슈 종료 → 내부 출하 검토, 지금 단계에 "지금" 표시)과 다음에 할 일. 아래로 이탈 내용(측정값과 그때 기준) → 품질 영향 평가(작성·검토·다시 제출) → 조치 요청(등록·승인·반려·결과 입력) → 이슈 닫기 → 재시험 결과 → 업무 이력.</li>
+  </ul>
+
+  <h3>제품</h3>
+  <ul>
+    <li><strong>제품 목록·등록</strong>: 식약처 허가정보를 품목명으로 검색해 골라 등록합니다(직접 입력 없음). "백신만" 거르기 추가 중.</li>
+    <li><strong>제품 상세 → 기준 탭</strong>: 시험 항목·공정 조건 항목마다 시험 규격, 사내 관리기준, 버전. QA 관리자만 수정. "교육용 가상 기준" 표시.</li>
+    <li><strong>제품 상세 → 허가정보·회수 이력 탭</strong>: 허가정보로 등록한 제품만. 허가일·업체·주성분·취소 여부, 같은 품목의 회수·판매중지 공지.</li>
+  </ul>
+
+  <h3>관리 (QA 관리자만)</h3>
+  <ul>
+    <li><strong>승인 대기</strong>: 조치 요청(승인·반려)과 품질 영향 평가 검토 대기.</li>
+    <li><strong>사용자·역할</strong>: 새로 들어온 사람에게 역할 지정.</li>
+    <li><strong>전체 업무 이력</strong>: 모든 로트의 이력을 사람·로트번호·기간으로 거르기.</li>
+    <li><strong>사용 기록</strong>: 로그인·화면 이동·검색·공공데이터 호출(성공 여부, 걸린 시간). 이메일 대신 사용자 ID만.</li>
+    <li><strong>예시 자료 되돌리기</strong>: 시연 전 자료를 가상 백신 예시 처음 상태로. "되돌리기"를 직접 입력해야 실행되고, 사용자·업무 이력은 지우지 않습니다.</li>
+  </ul>
+  <p><strong>MSDS</strong>: 원료·시약 안전정보는 산업안전보건공단 사이트로 연결합니다.</p>
+</section>
+
+<section id="rules">
+  <h2>7. 앱이 지키는 규칙</h2>
+  <h3>세 단계 판정</h3>
+  <p>예: 역가 시험 규격 80~125%, 사내 관리기준 90~115%</p>
+  <div class="scale" aria-label="판정 범위 그림">
+    <div class="s">80 미만<br>규격 이탈</div>
+    <div class="a">80~89.9 · 115.1~125<br>관리기준 이탈</div>
+    <div class="s">125 초과<br>규격 이탈</div>
+  </div>
+  <div class="scale" style="grid-template-columns: 1fr" aria-hidden="true"><div class="p">90~115 정상 (경계값 90, 115는 정상 / 80, 125는 관리기준 이탈)</div></div>
+  <ul>
+    <li>관리기준이 없는 항목은 정상 / 규격 이탈 두 단계로만 판정합니다.</li>
+    <li>공정 조건도 같은 방식이고, 설비 상태 "이상"은 규격 이탈로 봅니다. 한 번에 여러 항목이 벗어나도 이슈는 1개입니다.</li>
+  </ul>
+  <h3>보류·닫기·출하</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>규칙</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>자동 보류</td><td>규격 이탈만 로트를 보류. 관리기준 이탈은 이슈만 열고 보류하지 않음(불필요하게 출하를 막지 않도록)</td></tr>
+      <tr><td>이슈 닫기</td><td>공통: 승인된 영향 평가 + 끝나지 않은 조치 없음. 규격 이탈은 여기에 완료된 조치 1건 이상</td></tr>
+      <tr><td>내부 출하 가능</td><td>열린 이슈 0건(종류 상관없이) + 모든 시험 항목의 마지막 값이 규격 안 + 시험 중(또는 직접 보류) 상태. 영향 평가 승인만으로는 절대 풀리지 않음</td></tr>
+      <tr><td>기준 수정</td><td>값을 바꿀 때만 버전 +1. 이미 넣은 측정값의 판정과 그때 기준은 바뀌지 않음</td></tr>
+      <tr><td>입력 잠금</td><td>내부 출하 검토가 끝난 로트에는 더 입력할 수 없음</td></tr>
+      <tr><td>동시 처리</td><td>두 사람이 같은 요청·평가를 거의 동시에 처리하면 나중 사람에게 "다른 사람이 먼저 처리했습니다"를 보여 줌</td></tr>
+    </tbody>
+  </table></div>
+  <h3>권한</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>할 수 있는 일</th><th>열람자</th><th>QC 시험</th><th>생산</th><th>QA 관리자</th></tr></thead>
+    <tbody>
+      <tr><td>모든 화면 보기</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td></tr>
+      <tr><td>로트 등록, 공정 조건, 로트 보류</td><td></td><td></td><td>✔</td><td>✔</td></tr>
+      <tr><td>시험값 입력</td><td></td><td>✔</td><td></td><td>✔</td></tr>
+      <tr><td>영향 평가 작성, 조치 요청</td><td></td><td>✔</td><td>✔</td><td>✔</td></tr>
+      <tr><td>조치 결과 입력</td><td></td><td>배정 시</td><td>배정 시</td><td>✔</td></tr>
+      <tr><td>평가 검토, 조치 승인, 내부 출하 검토, 기준·제품 등록, 관리 메뉴</td><td></td><td></td><td></td><td>✔</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">버튼을 숨기는 것뿐 아니라 데이터베이스 규칙으로도 막아서, 화면을 거치지 않고 직접 쓰려 해도 거부됩니다.</p>
+</section>
+
+<section id="public">
+  <h2>8. 실제 공공데이터 연결</h2>
+  <p>식약처 공공데이터포털의 두 가지 실제 자료를 불러옵니다.</p>
+  <ul>
+    <li><strong>의약품 제품 허가정보</strong>: 품목명으로 검색해 제품을 등록하고, 제품 상세에서 허가일·업체·주성분·취소 여부를 봅니다. 백신은 품목 구분이 "백신류"라 "백신만" 골라 찾을 수 있습니다.</li>
+    <li><strong>의약품 회수·판매중지</strong>: 등록 제품과 같은 품목의 회수 공지, 대시보드의 최근 회수 공지 5건.</li>
+  </ul>
+  <p>공공데이터는 응답이 0.3초~15초 넘게 들쭉날쭉합니다. 그래서 칸마다 따로 불러오고, 실패하면 그 칸에만 안내와 "다시 시도" 버튼을 보여 줍니다(나머지 화면은 정상). 추가 중인 기능으로, 칸마다 "출처: 식약처 공공데이터 · 조회 시각"을 붙이고, 실패하면 이 기기에서 마지막으로 정상 조회한 결과와 그 시각을 함께 보여 줍니다.</p>
+  <p class="muted">공공데이터는 데이터베이스에 복사해 두지 않고, 허가정보를 로트 시험 규격이나 국가출하승인 정보로 쓰지 않습니다.</p>
+</section>
+
+<section id="tech">
+  <h2>9. 어떻게 동작하나</h2>
+  <div class="arch">
+    <div class="card"><h3>화면 (브라우저)</h3><p>HTML·CSS·JavaScript. 설치 없이 웹 주소로 엽니다. 휴대폰 폭에서도 씁니다.</p></div>
+    <div class="card"><h3>데이터베이스·로그인 (Supabase)</h3><p>로트·측정값·이슈·평가·이력을 저장. 구글 로그인. 판정·보류·닫기·출하 규칙과 권한을 여기서 강제합니다.</p></div>
+    <div class="card"><h3>중간 함수 (Vercel, 서울)</h3><p>식약처 API를 대신 부르는 작은 서버 함수. 인증키는 여기에만 있고 화면에는 나가지 않습니다.</p></div>
+    <div class="card"><h3>식약처 공공데이터</h3><p>허가정보, 회수·판매중지. 실시간 조회, 하루 10,000건 무료.</p></div>
+  </div>
+  <ul style="margin-top:12px">
+    <li>중요한 규칙(판정, 자동 보류, 닫기 조건, 출하 막기, 권한)은 화면이 아니라 데이터베이스가 지킵니다. 화면을 우회해도 같은 규칙이 적용됩니다.</li>
+    <li>모든 자료 변경은 데이터베이스가 자동으로 업무 이력에 남기고, 그 이력은 고칠 수 없습니다.</li>
+    <li>비밀 값(인증키 등)은 코드나 저장소에 넣지 않습니다.</li>
+  </ul>
+</section>
+
+<section id="not">
+  <h2>10. 하지 않는 것</h2>
+  <ul>
+    <li>실제 회사·로트 자료 사용, 가상 기준을 실제 법정 규격처럼 보이게 하기</li>
+    <li>규격 미달 로트를 버튼 하나로 특채 사용·출하 승인하기</li>
+    <li>국가출하승인 판단, 공급사 자동 부적격 처리</li>
+    <li>메일·메신저·푸시 알림, 결재 시스템 연동, 전자서명</li>
+    <li>아이디·비밀번호 회원가입(구글 로그인만), 공공데이터 대량 복사</li>
+  </ul>
+</section>
+
+<section id="status">
+  <h2>11. 지금 상태와 남은 일</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>기능 묶음</th><th>상태</th></tr></thead>
+    <tbody>
+      <tr><td>로그인·역할·로트·시험값·공정 조건·자동 판정·업무 이력</td><td><span class="badge ok">완료</span></td></tr>
+      <tr><td>품질 이슈·조치 요청·승인·반려·재시험·이슈 닫기·출하 검토·대시보드</td><td><span class="badge ok">완료</span></td></tr>
+      <tr><td>허가정보로 제품 등록·회수 이력·사용 기록·예시 되돌리기·MSDS 링크</td><td><span class="badge ok">완료</span></td></tr>
+      <tr><td>세 단계 판정·사내 관리기준·기준 버전·로트 용어·가상 백신 예시</td><td><span class="badge ok">완료</span></td></tr>
+      <tr><td>품질 영향 평가·종류별 닫기 조건·단계 표시줄·로트 요약</td><td><span class="badge alert">사람 확인 대기</span></td></tr>
+      <tr><td>백신 허가정보 거르기·출처와 조회 시각·실패 때 마지막 정상 결과</td><td><span class="badge info">만드는 중</span></td></tr>
+      <tr><td>선택: 영향 평가 상세(근거 목록·보완 이력), 인허가·공급 담당자용 품질 현황, 공급사 반복 이탈 감지</td><td><span class="badge gray">시간이 남으면</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>발표 전까지 할 일</h3>
+  <ol>
+    <li>백신 허가정보·출처 표시 마무리</li>
+    <li>품질 영향 평가·백신 허가정보 화면을 사람이 직접 써 보고 확인</li>
+    <li>변경 내용을 검토해 배포 주소에 올리기 (지금 배포 주소에는 앞의 세 묶음까지만 올라가 있음)</li>
+    <li>시연 순서 리허설</li>
+  </ol>
+  <h3>알려진 한계</h3>
+  <ul>
+    <li>"백신만" 거르기는 너무 넓은 품목명(예: "프리필드")에서는 결과가 없을 수 있습니다. "인플루엔자", "백신"처럼 구체적으로 검색하면 됩니다.</li>
+    <li>30분 → 1분, 문의 메일 주 10건 같은 숫자는 가설이라 시연 참가자에게 확인이 필요합니다.</li>
+    <li>MSDS는 앱 안 검색 없이 공단 사이트 링크만 있습니다.</li>
+  </ul>
+</section>
+
+<section id="try">
+  <h2>12. 직접 써 보기</h2>
+  <ul>
+    <li><strong>주소</strong>: <span class="mono">https://pharmaflow-iota.vercel.app</span> (구글 계정 로그인 → 처음엔 열람자, QA 관리자에게 역할 요청)</li>
+    <li><strong>예시 자료</strong>: 가상 백신 A·B(교육용). 역가·엔도톡신·pH(시험), 배양 온도·보관 온도(공정).</li>
+    <li><span class="mono">VX-2610-001</span> 생산 중 · <span class="mono">002</span> 시험 중(역가를 비워 둠 — 시연에서 넣어 볼 수 있음) · <span class="mono">003</span> 보류(역가 규격 이탈) · <span class="mono">004</span> 시험 중(엔도톡신 관리기준 이탈 이슈)</li>
+    <li><strong>추천 체험 순서</strong>: VX-2610-002에 역가 85 넣기 → 관리기준 이탈 이슈 확인 → 영향 평가 작성 → (QA 관리자) 검토 → 이슈 닫기 → 로트 상세에서 내부 출하 검토 창 보기</li>
+    <li><strong>기획 문서</strong>: 전체 요약은 <span class="mono">docs/Intent.md</span>, 요구사항은 <span class="mono">docs/PRD.md</span>, 화면 구조는 <span class="mono">docs/IA.md</span>, 용어는 <span class="mono">GLOSSARY.md</span></li>
+  </ul>
+</section>
+
+<footer>PharmaFlow Bio · 교육용 프로젝트 · 회사·로트·시험 자료는 모두 가상이며, 이 앱의 판단은 국가출하승인이 아닙니다</footer>
+</main>
+</body>
+</html>

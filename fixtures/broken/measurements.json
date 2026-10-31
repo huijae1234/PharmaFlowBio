@@ -1,0 +1,29 @@
+{
+  "about": "일부러 틀린 시험값·경계값 (모두 가상). 기준은 fixtures/measurements.json의 specs와 같다. expect가 판정이면 저장되는 값, 문구면 저장하지 않는 값",
+  "cases": [
+    { "id": "B-01", "group": "빈 값", "item": "역가", "input": "", "expect": "숫자로 입력해 주세요." },
+    { "id": "B-02", "group": "빈 값", "item": "역가", "input": "   ", "expect": "숫자로 입력해 주세요." },
+    { "id": "B-03", "group": "단위 다른 값", "item": "엔도톡신", "input": "1.5 EU/mL", "expect": "숫자로 입력해 주세요." },
+    { "id": "B-04", "group": "단위 다른 값", "item": "역가", "input": "100%", "expect": "숫자로 입력해 주세요." },
+    { "id": "B-05", "group": "단위 다른 값", "item": "pH", "input": "7,2", "expect": "숫자로 입력해 주세요." },
+    { "id": "B-06", "group": "음수", "item": "엔도톡신", "input": "-1", "expect": "out_of_spec" },
+    { "id": "B-07", "group": "음수", "item": "보관 온도", "input": "-0.5", "expect": "out_of_spec" },
+    { "id": "B-08", "group": "경계값", "item": "역가", "input": "80", "expect": "out_of_alert" },
+    { "id": "B-09", "group": "경계값", "item": "역가", "input": "125", "expect": "out_of_alert" },
+    { "id": "B-10", "group": "경계값", "item": "역가", "input": "90", "expect": "pass" },
+    { "id": "B-11", "group": "경계값", "item": "역가", "input": "115", "expect": "pass" },
+    { "id": "B-12", "group": "경계값", "item": "역가", "input": "79.99", "expect": "out_of_spec" },
+    { "id": "B-13", "group": "경계값", "item": "엔도톡신", "input": "0", "expect": "pass" },
+    { "id": "B-14", "group": "경계값", "item": "엔도톡신", "input": "10", "expect": "out_of_alert" },
+    { "id": "B-15", "group": "경계값", "item": "엔도톡신", "input": "10.01", "expect": "out_of_spec" },
+    { "id": "B-16", "group": "경계값", "item": "보관 온도", "input": "8", "expect": "out_of_alert" },
+    { "id": "B-17", "group": "경계값", "item": "보관 온도", "input": "8.1", "expect": "out_of_spec" }
+  ],
+  "duplicate": {
+    "id": "B-18",
+    "group": "중복",
+    "about": "한 번에 저장에 같은 항목이 두 번 (spec 017)",
+    "entries": [{ "item": "역가", "input": "100" }, { "item": "역가", "input": "101" }],
+    "expect": "이미 입력된 시험 항목이 있습니다. 창을 닫고 다시 열어 주세요."
+  }
+}

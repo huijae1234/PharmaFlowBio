@@ -1,0 +1,14 @@
+# 비밀 키 (공공데이터 인증키 등)
+.env
+.env.*
+# 값 없이 이름만 적은 안내 파일은 올린다
+!.env.example
+
+node_modules/
+_workspace/
+
+# 운영체제 파일
+Thumbs.db
+desktop.ini
+.DS_Store
+.vercel

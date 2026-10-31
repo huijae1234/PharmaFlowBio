@@ -1,0 +1,10 @@
+{
+  "header": { "resultCode": "00", "resultMsg": "NORMAL SERVICE." },
+  "body": {
+    "pageNo": 1, "totalCount": 2, "numOfRows": 10,
+    "items": [
+      { "ITEM_SEQ": "900000001", "ITEM_NAME": "시험인플루엔자4가백신주 (시험 자료)", "ENTP_NAME": "가상백신(주) (시험 자료)", "ITEM_INGR_NAME": "인플루엔자바이러스항원", "SPCLTY_PBLC": "전문의약품", "ITEM_PERMIT_DATE": "20200315", "CANCEL_NAME": "정상", "PRDUCT_TYPE": "[06310]백신류" },
+      { "ITEM_SEQ": "900000001", "ITEM_NAME": "시험인플루엔자4가백신주 (시험 자료)", "ENTP_NAME": "가상백신(주) (시험 자료)", "ITEM_INGR_NAME": "인플루엔자바이러스항원", "SPCLTY_PBLC": "전문의약품", "ITEM_PERMIT_DATE": "20200315", "CANCEL_NAME": "정상", "PRDUCT_TYPE": "[06310]백신류" }
+    ]
+  }
+}
