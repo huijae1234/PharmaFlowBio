@@ -61,7 +61,7 @@
 | `CLAUDE.md`(더한 것은 발표 자료에) | 팀 규칙·프로젝트 규칙·"수업 밖에서 더한 규칙 2개"(출처·막으려는 실수 적음) | M(수업 밖 규칙은 C) | 일부 | 새 세션 Claude가 같은 규칙을 말하는지 확인 안 함. 발표 자료 장 없음. **53행에 팀원 실명과 이메일이 적혀 있음**(실명 연락처 금지 항목에 걸림) | 20 하네스 | 이메일 표기를 지울지 김희재가 정함. 팀원이 새 세션에서 규칙을 세 줄로 말하게 해 확인 | 사람(김희재·팀원) |
 | `.claude/skills/` 팀 스킬 두세 개 | `pharmaflow-review` 1개(기본 `/code-review`를 고친 것) | C | 일부 | 2~3개 필요, **1개뿐**. 스킬 두 번 이상 써 본 PR 기록 없음. `main`에 없음 | 20 하네스, 스킬 | 후보(시험·문서 개수 맞추기, 단계 PR 절차)에서 팀이 정해 만들기 | 사람(팀, 김희재가 정함) |
 | `docs/skills.md` | 팀 스킬 1개(원래 스킬·바꾼 것·왜·써 본 곳·전후), 배운 스킬 표, 새로 찾은 스킬 없음 | C | 일부 | 팀 스킬 2~3개·새로 찾은 스킬(만든 사람·권한 확인) 없음. Ponytail 사용 사례가 이 저장소 파일에 없음 | 20, 스킬 | 위와 함께 | 사람(팀) |
-| `docs/references.md`, `docs/references/` | 레퍼런스 9개(캡처 9장)·보여 준 방법·가져온 것·따라 하지 않은 것·어디에 썼나, 디자인 이유는 `docs/DESIGN.md`(윤○○, `main`) | M | 일부 | 레퍼런스 **출처 링크 미확인**(문서가 직접 밝힘), 발표 장 이름·PR 번호 없음 | Day 8 발표와 레퍼런스 | 출처 링크 채우기 | 사람(윤○○) |
+| `docs/references.md` | 레퍼런스 9개(캡처 9장은 포트폴리오 사본에서 뺌)·보여 준 방법·가져온 것·따라 하지 않은 것·어디에 썼나, 디자인 이유는 `docs/DESIGN.md`(윤○○, `main`) | M | 일부 | 레퍼런스 **출처 링크 미확인**(문서가 직접 밝힘), 발표 장 이름·PR 번호 없음 | Day 8 발표와 레퍼런스 | 출처 링크 채우기 | 사람(윤○○) |
 
 ### 2-E. 확인
 | 원안 요구 | 실제 경로·근거 | 기준 | 상태 | 부족한 내용 | 8번 항목 | 해야 할 작업 | 수행 주체 |
@@ -93,7 +93,7 @@
 ## 3. `main`에 들어 있는 것과 작업 브랜치에만 있는 것
 | 구분 | 파일·기능 |
 |---|---|
-| `main`(M)에 있음 | 코드 전체(기능 001~011·017~026), `fixtures/`, `docs/test-data.md`, `docs/references.md`·`docs/references/`·`docs/DESIGN.md`, `docs/features/ui-redesign.md`, `docs/PRD.md`, `docs/IA.md`, `docs/ERD.md`, `docs/research.md`, `docs/personas/`, `docs/specs/`(21개), `docs/journeys/`, `CLAUDE.md`, `README.md`, `GLOSSARY.md`, `docs/adr/` (2026-10-29 오후 `8614a39` 기준) |
+| `main`(M)에 있음 | 코드 전체(기능 001~011·017~026), `fixtures/`, `docs/test-data.md`, `docs/references.md`·`docs/DESIGN.md`, `docs/features/ui-redesign.md`, `docs/PRD.md`, `docs/IA.md`, `docs/ERD.md`, `docs/research.md`, `docs/personas/`, `docs/specs/`(21개), `docs/journeys/`, `CLAUDE.md`, `README.md`, `GLOSSARY.md`, `docs/adr/` (2026-10-29 오후 `8614a39` 기준) |
 | `checklist`(C, PR #20)에만 있음 | `docs/interview.md`, `docs/interviews/`, `docs/uj.md`, `docs/spec.md`, `docs/data-source.md`, `docs/skills.md`, `docs/debug-note.md`, `review.md`, `.claude/skills/pharmaflow-review`, `docs/features/`, `docs/03-data-or-automation.md`, `docs/04-test-report.md`, `docs/coverage.md`, `발표/erd.html`·`erd-data-structure.html`, `tests/architecture.test.js`, PRD v0.11·ERD v0.18·IA v2.13 |
 | `qa-list`(Q)에만 있음 | `docs/qa.md`, `docs/01-prd.md`, `docs/02-plan.md`, `docs/submission-audit.md`, `assets/captures/`(QA 증거로 `C`에서 같은 경로로 복사) |
 | `phase-14-ai-briefing`(P14) | 2026-10-29 PR #28로 `main`에 병합됨(spec 022~024) |
