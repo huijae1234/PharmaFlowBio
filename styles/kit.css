@@ -90,6 +90,9 @@
 .age--late { background: var(--badge-danger-bg); color: var(--badge-danger-text); }
 .button--ghost { border-color: transparent; background: transparent; color: var(--color-text-muted); min-height: 36px; padding: 0 var(--space-3); font-size: var(--text-sm); }
 .button--ghost:hover { background: var(--color-hover); color: var(--color-text); }
+.email-cell { display: inline-flex; align-items: center; gap: var(--space-2); max-width: 100%; }
+.email-cell > .break { min-width: 0; } /* 긴 이메일을 보였을 때 줄이 넘치지 않게 (flex 기본 min-width:auto) */
+.email-toggle { min-width: var(--tap-size); min-height: var(--tap-size); padding: 0; }
 .home-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-5); }
 
 /* 불러오는 중: 곧 나올 자리의 뼈대 */

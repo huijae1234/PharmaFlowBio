@@ -1,6 +1,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { homePathFor, isReadOnly, can, roleLabel, canOpen, menuFor, ROLES } from "../src/domain/roles.js";
+import { homePathFor, isReadOnly, can, roleLabel, canOpen, menuFor, ROLES, maskEmail } from "../src/domain/roles.js";
+
+test("사용자·역할 화면 이메일 가리기: 아이디는 같은 수의 별표, 도메인만 보인다 (포트폴리오 사본)", () => {
+  assert.equal(maskEmail("someone@gmail.com"), "*********@gmail.com");
+  assert.equal(maskEmail("a@b.kr"), "*********@b.kr", "짧은 아이디도 길이가 드러나지 않는다");
+  assert.equal(maskEmail("first.last+tag@sub.example.com"), "*********@sub.example.com");
+  assert.equal(maskEmail("no-at-sign"), "*********", "@가 없으면 전부 가린다");
+  assert.equal(maskEmail("@example.com"), "*********", "아이디가 없으면 전부 가린다");
+});
 
 test("역할별 첫 화면 (FR-005)", () => {
   assert.equal(homePathFor("qa_manager"), "#/home/qa");

@@ -10,6 +10,19 @@
 5. 화면 규칙과 DB 규칙이 같나
 6. 문서·시험 한 세트
 
+## 2026-11-05 · 포트폴리오 사본 `main` · 게스트 안내 문구, 사용자 화면 이메일 가리기, 0040 게스트 역할 막기 · Claude가 스킬대로
+대상: `src/domain/roles.js`(maskEmail), `src/ui/pages/users.js`, `src/ui/layout.js`, `src/ui/app.js`, `styles/kit.css`, `supabase/migrations/0040_guest_role_guard.sql`, `supabase/tests/039_rules.sql`. 앞서 리뷰 없이 올린 0039(게스트 로그인)도 2·4번에서 함께 봄.
+1단계 기본 `/code-review`(high) 결과 5건: 게스트에게 역할을 줄 수 있음(고침, 0040), 게스트 줄이 목록에 쌓임(고침, 0040), 긴 이메일이 좁은 화면에서 넘침(고침, kit.css), 눈 단추 44px < 전역 48px(보류: 프로젝트 토큰 `--tap-size` 44px를 그대로 씀), maskEmail 위치(보류: 사용자·역할 화면 전용이라 roles.js에 둠).
+
+| 번호 | 결과 | 근거 |
+|---|---|---|
+| 1 키 | 통과 | `src/config.js`는 공개 키만. `node --test`의 architecture 시험 통과 |
+| 2 서버 권한 | 통과 | 이메일 가리기는 화면 표시만이고 이메일은 여전히 `list_users`(QA 관리자만)로만 읽힘. `delete_guest`는 익명 계정만 지움, `set_user_role`이 게스트 거절(0040). `039_rules.sql` 8/8 |
+| 3 층 방향 | 통과 | maskEmail은 domain, 화면은 domain만 가져옴 |
+| 4 두 번·동시 | 해당 없음 | 상태를 바꾸는 새 함수는 본인 계정 삭제뿐(두 번 불러도 두 번째는 지울 것이 없음) |
+| 5 화면·DB 규칙 | 통과 | 게스트 판단은 DB(`auth.users.is_anonymous`)와 화면(`session.user.is_anonymous`)이 같은 값 |
+| 6 문서·시험 | 통과 | `roles.test.js` 새 시험 먼저 실패 확인 후 구현, `node --test` 537개 통과. README·CLAUDE.md 개수 537, ERD v0.19, IA 두 줄, MIGRATION-NOTES |
+
 ## 2026-10-29 17:45 · `checklist` Day 8 기록 변경(문서·캡처만) · 사람이 아니라 Claude가 스킬대로 확인
 대상: `docs/04-test-report.md`(Day 8 절), `docs/debug-note.md`(DN-10), `docs/coverage.md`, `docs/skills.md`, 캡처 16장 `assets/captures/day8-ego/`. 기준 `ce6484e` 위의 작업. 스킬 파일 `.claude/skills/pharmaflow-review/SKILL.md`.
 1단계 기본 `/code-review`는 CLAUDE.md "문서만 바뀐 때만 건너뛴다"에 따라 건너뜀(코드·DB 변경 없음).

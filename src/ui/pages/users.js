@@ -1,6 +1,7 @@
 // IA AD_020000_PG 사용자·역할. FR-004 (spec 001): QA 관리자만, 자기 역할은 못 바꾼다
 import { h, formatDateTime } from "../dom.js";
-import { ROLES, roleLabel } from "../../domain/roles.js";
+import { svg } from "../svg.js";
+import { ROLES, maskEmail, roleLabel } from "../../domain/roles.js";
 import { listUsers, setUserRole } from "../../infrastructure/store.js";
 
 /** @param {{ profile: { id: string } }} context */
@@ -24,9 +25,37 @@ export async function renderUsers({ profile }) {
 function userRow(user, isMe, status) {
   return h("tr", null,
     h("td", null, user.display_name, isMe ? h("span", { class: "muted" }, " (본인)") : null),
-    h("td", { class: "break" }, user.email),
+    emailCell(user.email),
     h("td", null, roleSelect(user, isMe, status)),
     h("td", { class: "muted" }, formatDateTime(user.created_at)));
+}
+
+// 기본은 가린 채로 두고, 눈 단추를 누른 줄만 보인다. 화면 표시만 가리는 것이라 권한은 그대로다(이메일은 QA 관리자만 읽음)
+function emailCell(email) {
+  if (!email) return h("td", { class: "muted" }, "없음");
+  const text = h("span", { class: "break" }, maskEmail(email));
+  const button = h("button", {
+    class: "button button--ghost email-toggle",
+    type: "button",
+    "aria-label": "이메일 보기",
+    "aria-pressed": "false",
+    title: "이메일 보기",
+    onclick: () => {
+      const shown = button.getAttribute("aria-pressed") !== "true";
+      text.textContent = shown ? email : maskEmail(email);
+      button.setAttribute("aria-pressed", String(shown));
+      button.replaceChildren(eyeIcon(shown));
+    },
+  }, eyeIcon(false));
+  return h("td", null, h("span", { class: "email-cell" }, text, button));
+}
+
+// 보이는 중이면 빗금 친 눈
+function eyeIcon(shown) {
+  return svg("svg", { viewBox: "0 0 24 24", width: 20, height: 20, fill: "none", stroke: "currentColor", "stroke-width": 1.8, "stroke-linecap": "round", "aria-hidden": "true", focusable: "false" },
+    svg("path", { d: "M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" }),
+    svg("circle", { cx: 12, cy: 12, r: 3 }),
+    shown ? svg("path", { d: "M3 3l18 18" }) : null);
 }
 
 function roleSelect(user, isMe, status) {

@@ -10,7 +10,7 @@
 | 시험한 사이트 | 로컬 `localhost:5197`(main `8614a39`, `PUBLIC_DATA_MODE=fixtures`·`AI_MODE=fixtures`, 끝나고 끔), 배포 https://pharmaflow-iota.vercel.app(파일이 main과 같음, CQ-22) |
 | 실행 날짜 | 2026-10-29 |
 | 쓰지 않은 것 | 구글 로그인(우회 금지), 실제 Supabase SQL, 이 세션의 실제 Claude·공공 API 호출, 슬랙 발송 |
-| 시트 | [Claude QA_2026-10-29](https://docs.google.com/spreadsheets/d/1lzHdFibpIExUQGTC1Uc2NqJ3xWBynYJW-HxvxXhDLnM/edit#gid=1313590037), [직접 QA_2026-10-29](https://docs.google.com/spreadsheets/d/1lzHdFibpIExUQGTC1Uc2NqJ3xWBynYJW-HxvxXhDLnM/edit#gid=718011464). 소유 김희재 계정(`akxlwm5933`), 편집 유○○ 계정. 문서 이름은 "PharmaFlow Bio QA 리스트"이고, 예전 다른 프로젝트(관능검사) 탭 두 개는 이름 앞에 "(이전 프로젝트)"를 붙여 숨겼다(지우지 않음) |
+| 시트 | [Claude QA_2026-10-29](https://docs.google.com/spreadsheets/d/1lzHdFibpIExUQGTC1Uc2NqJ3xWBynYJW-HxvxXhDLnM/edit#gid=1313590037), [직접 QA_2026-10-29](https://docs.google.com/spreadsheets/d/1lzHdFibpIExUQGTC1Uc2NqJ3xWBynYJW-HxvxXhDLnM/edit#gid=718011464). 소유 김희재 계정, 편집 유○○ 계정. 문서 이름은 "PharmaFlow Bio QA 리스트"이고, 예전 다른 프로젝트(관능검사) 탭 두 개는 이름 앞에 "(이전 프로젝트)"를 붙여 숨겼다(지우지 않음) |
 
 ## 2. 결과 요약 (2026-10-29 오후, 시트를 다시 읽어 확인)
 | 구분 | Pass | Fail | No Run | 비고 |
@@ -116,7 +116,7 @@
 | **QA용 자료를 앱에 미리 만드는 일** | **하지 못했다.** 로그인 없이는 쓰기가 안 되어 `QA-1029-` 로트는 아직 0건이다 |
 | 접속 주소 | 배포 https://pharmaflow-iota.vercel.app. 배포 파일이 `main` `8614a39`와 같음을 확인(CQ-22) |
 | 로컬 서버 | 이 컴퓨터에 `localhost:5173`(처음 QA 때 켠 것)과 `5190`이 아직 켜져 있다. 5173은 켤 때의 서버 코드를 쓰므로 다시 쓰려면 껐다 켠다. 끄려면 `netstat -ano` 결과에서 `:5173` 줄의 번호를 찾아 `taskkill /PID 번호` |
-| 시트 공유 | 소유 김희재 계정(`akxlwm5933`), 편집 유○○ 계정. **윤○○·강사는 아직 공유되지 않음** |
+| 시트 공유 | 소유 김희재 계정, 편집 유○○ 계정. **윤○○·강사는 아직 공유되지 않음** |
 
 ## 6. Fail 기록 형식
 이번 실행에서는 **Fail이 없다**. 앞으로 Fail이 나오면 시트 "이슈" 칸과 아래 형식으로 남긴다: QA 항목(번호·시나리오·현재 Fail) / As-Is(실제로 한 조작과 반응) / 오류 근거(콘솔·네트워크 오류, 캡처. 없으면 "없음") / To-Be(요구사항상 기대 동작) / 수정·재시험(내용·커밋·재시험 결과·사람이 다시 볼 단계). 404·홈 이동 같은 오류는 실제로 본 경우에만 적는다.

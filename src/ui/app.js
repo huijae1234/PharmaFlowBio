@@ -139,6 +139,7 @@ async function route() {
   const main = h("div", null, loadingView());
   put(app, renderLayout({
     role: profile.role,
+    isGuest: session.user.is_anonymous === true,
     userId: profile.id,
     userName: profile.display_name,
     currentPath: path.replace("/:id", ""),

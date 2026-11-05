@@ -9,6 +9,8 @@ import { listPendingReviews } from "../infrastructure/store-reviews.js";
 
 // FR-003 (spec 001): 열람자 안내 문구
 const VIEWER_NOTICE = "역할을 받기 전에는 읽기만 할 수 있습니다. QA 관리자에게 역할을 요청해 주세요.";
+// 포트폴리오 사본: 게스트는 역할을 받을 수 없으므로 요청 안내 대신 둘러보기 안내
+const GUEST_NOTICE = "게스트로 둘러보는 중입니다. 읽기만 할 수 있고, 로그아웃하면 게스트 기록이 지워집니다.";
 
 // 홈 개편: 메뉴를 업무 / 기준정보 / 관리로 묶는다 (주소로 나눔, 메뉴 자체는 roles.js 그대로)
 const NAV_GROUPS = [
@@ -19,9 +21,9 @@ const NAV_GROUPS = [
 const APPROVALS_PATH = "#/admin/approvals";
 
 /**
- * @param {{ role: string, userId?: string, userName?: string, currentPath: string, content: Node, onSignOut?: () => void }} options
+ * @param {{ role: string, isGuest?: boolean, userId?: string, userName?: string, currentPath: string, content: Node, onSignOut?: () => void }} options
  */
-export function renderLayout({ role, userId, userName, currentPath, content, onSignOut }) {
+export function renderLayout({ role, isGuest = false, userId, userName, currentPath, content, onSignOut }) {
   const items = menuFor(role);
   const approvalCount = h("span", { class: "nav-count" });
   const homeCount = h("span", { class: "nav-count", "aria-label": "내 할 일 건수" });
@@ -58,7 +60,7 @@ export function renderLayout({ role, userId, userName, currentPath, content, onS
     sidebar,
     h("div", { class: "main" },
       topbar,
-      isReadOnly(role) ? h("p", { class: "notice", role: "status" }, VIEWER_NOTICE) : null,
+      isReadOnly(role) ? h("p", { class: "notice", role: "status" }, isGuest ? GUEST_NOTICE : VIEWER_NOTICE) : null,
       h("main", { id: "content", class: "content", tabindex: "-1" }, content)),
     canUseChat(role) ? renderAssistant(role) : null); // spec 025 FR-001: 직원 역할만. 화면을 옮기면 새로 그려져 대화가 비워진다
 }

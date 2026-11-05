@@ -16,7 +16,7 @@
 | 작업 브랜치에서 읽은 것(병합 안 함) | PR #20 `checklist`(인터뷰 정리·04·03·skills·review·CLAUDE.md 수업 밖 규칙), `qa-list`(qa.md·01-prd·02-plan·submission-audit), `phase-14-ai-briefing`(Claude 브리핑, PR 없음) |
 | 배포 사이트 | https://pharmaflow-iota.vercel.app 열림. `main` 최신인지는 미확인 |
 | 슬라이드 표시 | `확인`(문서·코드·시험으로 확인) / `시험 자료·모의`(가짜 응답·시험 모드) / `계획`(미병합·미구현·후보) / `미확인`(못 해 봄) |
-| 접근하지 못한 것 | 팀 Supabase·Vercel 설정·구글 로그인 후 화면·GitHub 리뷰 작성 권한·QA 시트 열람 권한(소유자 `akxlwm5933`) |
+| 접근하지 못한 것 | 팀 Supabase·Vercel 설정·구글 로그인 후 화면·GitHub 리뷰 작성 권한·QA 시트 열람 권한(소유자 김희재 계정) |
 
 ## 2. 원안 11절 대응표
 상태: 충족=슬라이드에 근거 있는 내용이 있음, 일부=자리와 일부 내용만, 빈자리=자리만 마련.

@@ -61,6 +61,15 @@ export function roleLabel(role) {
   return ROLE_LABELS[role] ?? ROLE_LABELS.viewer;
 }
 
+// 사용자·역할 화면: 캡처에 이메일이 그대로 남지 않게 아이디를 가린다. 아이디 길이도 드러나지 않게 별표 수는 고정
+const EMAIL_MASK = "*********";
+
+/** @param {string} email */
+export function maskEmail(email) {
+  const at = email.lastIndexOf("@");
+  return at < 1 ? EMAIL_MASK : EMAIL_MASK + email.slice(at);
+}
+
 /** @param {string | undefined} role */
 export function homePathFor(role) {
   return HOME_PATHS[role] ?? HOME_PATHS.viewer;

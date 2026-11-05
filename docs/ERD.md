@@ -495,6 +495,7 @@ IA "역할별로 쓸 수 있는 화면" 표를 데이터베이스 규칙으로 �
 | 2026-10-22 | v0.1 | 처음 작성. 엔터티 11개, 확인 필요 Q1~Q5 |
 | 2026-10-22 | v0.2 | Q1·Q2·Q4·Q5 확정 반영 (배치 상태 규칙). Q3만 남음 |
 | 2026-10-29 | v0.18 | spec 026: notification.kind에 `morning_briefing` (마이그레이션 0036). 새 표·칸 없음. 읽기 전용 함수 morning_briefing_items 등은 service_role만 |
+| 2026-11-05 | v0.19 | 포트폴리오 사본: 게스트(익명) 로그인 (마이그레이션 0039). 새 표·칸 없음. 게스트 profile 이름 "게스트"(열람자), `delete_guest`(로그인한 사람, 익명 계정만 본인 삭제), private `remove_guest`·`purge_stale_guests`(사용 기록을 먼저 지우고 계정 삭제), pg_cron 매일 03시(KST) 하루 지난 게스트 정리. 0040: list_users에서 게스트 제외, set_user_role이 게스트 거절 |
 | 2026-10-28 | v0.18 | 발표용 핵심 표 그림(표 8개, 대표 칸), 가입 흐름·요청 흐름 그림 추가. 선택 기능 표 4개는 DB에 없어 관계도에서 빼고 "DB에 없음" 표시. 구조 변경 없음(문서만) |
 | 2026-10-28 | v0.17 | spec 018: sample_transfer.status에 `disposed`(폐기), disposed_by·disposed_at·disposed_quantity·dispose_note, 계산 값 보관 기한·보관 수 식, notification.kind에 retention_due. 예시 로트 IFV-2410-001(출하 완료)과 보존 검체 1건 |
 | 2026-10-28 | v0.16 | spec 017: batch.status에 `shipped`(출하 완료), batch.shipped_at·ship_note·shipped_by·ship_recorded_at, 상태 규칙 "출하 가능 → 출하 완료", notification.kind에 tests_completed·lot_shipped |
