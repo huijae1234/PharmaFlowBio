@@ -231,9 +231,11 @@ AI_MODE=fixtures, PUBLIC_DATA_MODE=fixtures는 가짜 응답을 쓰는 로컬 �
 
 | 팀원 | 담당 |
 |---|---|
-| 유○○ · [dbdpfla98](https://github.com/dbdpfla98) | 로그인·권한·판정·조치·출하·검체·알림·작업지시·공정, AI 도우미(025)·아침 브리핑(026), Supabase·Vercel 운영 |
-| 윤○○ · 아이디 가림 | 홈·목록·로트·이슈 UI 개편, 디자인 톤, 인터뷰 설계 자료 |
+| 유○○ | 로그인·권한·판정·조치·출하·검체·알림·작업지시·공정, AI 도우미(025)·아침 브리핑(026), Supabase·Vercel 운영 |
+| 윤○○ | 홈·목록·로트·이슈 UI 개편, 디자인 톤, 인터뷰 설계 자료 |
 | 김희재 · [huijae1234](https://github.com/huijae1234) | 공개 규제 현황(021), AI 작성·검토 지원(022~024), 문제 정의·요구사항·ERD·IA·제출 문서 |
+
+팀원 두 명의 이름은 개인정보 보호를 위해 가렸습니다.
 
 팀 프로젝트 원본: [dbdpfla98/PharmaFlow](https://github.com/dbdpfla98/PharmaFlow) · [기능별 담당](docs/features/README.md)
 

@@ -28,11 +28,11 @@
 | 원안 요구 | 실제 경로·근거 | 기준 | 상태 | 부족한 내용 | 8번 항목 | 해야 할 작업 | 수행 주체 |
 |---|---|---|---|---|---|---|---|
 | 비공개 저장소 | `gh repo view`: PRIVATE, 기본 브랜치 `main` | M | 충족 | 없음 | 11번 | 공개로 바꾸지 않기 | — |
-| 강사를 collaborator로 추가(원안에 적힌 강사 이메일), 초대 "Pending"이라도 보이는지 확인 | collaborator 4명(`dbdpfla98` 소유, `huijae1234`, `윤○○`, `llkd33`), 모두 수락 상태. 김희재가 강사 초대를 마쳤다고 확인(2026-10-29) | M | 충족 | `llkd33`가 강사 계정인지는 이 환경에서 확정 못 함(프로필 이름 David). 대기 중 초대 목록은 관리자 권한 필요 | 11번 | 없음 | — |
+| 강사를 collaborator로 추가(원안에 적힌 강사 이메일), 초대 "Pending"이라도 보이는지 확인 | collaborator 4명(`dbdpfla98` 소유, `huijae1234`, 윤○○ 계정, `llkd33`), 모두 수락 상태. 김희재가 강사 초대를 마쳤다고 확인(2026-10-29) | M | 충족 | `llkd33`가 강사 계정인지는 이 환경에서 확정 못 함(프로필 이름 David). 대기 중 초대 목록은 관리자 권한 필요 | 11번 | 없음 | — |
 | GitHub 저장소 링크 | https://github.com/dbdpfla98/PharmaFlow (README 제출 정보에 기재) | Q | 충족 | 없음 | 9번 제출 준비 | — | — |
 | 배포 주소 | README: https://pharmaflow-iota.vercel.app → HTTP 200. `main` 병합 커밋에 Vercel 배포 성공 상태가 붙고, 배포 파일이 `main` `8614a39`와 같음(qa.md CQ-22) | M·Q | 충족 | GitHub 소개의 홈페이지 주소(`pharmaflow-five-delta`)는 Claude 내부 브라우저·`curl`에서 404였으나 8조 전원이 익스플로러에서 잘 열린다고 확인 | 14번 | 없음 | — |
 | 발표 자료 경로 `발표/index.html` | 없음. `발표/erd.html`, `발표/erd-data-structure.html`(ERD 장)만 있음 | C | **없음** | 11절 내용(문제·API·문제 해결·시연·데이터 구조·확인·하네스·팀원별 기여·다음)을 담은 덱 | Day 8 발표와 레퍼런스, 12·23번 | 기능 최종본 뒤 캡처를 모아 `/ls-slide-skill`로 `발표/index.html`, 캡처는 `발표/images/` | 팀(캡처는 로그인 가능한 팀원) |
-| 팀원 이름과 GitHub 아이디 | README "제출 정보": 유○○(`dbdpfla98`), 윤○○(`윤○○`), 김희재(`huijae1234`) | Q | 일부 | 이름과 아이디의 짝은 커밋 기록과 팀 설명 기준이며 팀원이 직접 확인하지 않음. `llkd33`는 누구인지 문서에 없음 | 23번 | 팀원이 README의 짝을 확인 | 사람(팀원) |
+| 팀원 이름과 GitHub 아이디 | README "제출 정보": 유○○(`dbdpfla98`), 윤○○(아이디 가림), 김희재(`huijae1234`) | Q | 일부 | 이름과 아이디의 짝은 커밋 기록과 팀 설명 기준이며 팀원이 직접 확인하지 않음. `llkd33`는 누구인지 문서에 없음 | 23번 | 팀원이 README의 짝을 확인 | 사람(팀원) |
 | 팀원마다 대표 PR 번호 하나 | [features/README.md](features/README.md): 유○○ #1~#19, 윤○○ #22·#11, 김희재 #20(**열림**) | C | 일부 | 김희재의 PR이 병합되지 않음. #22·#11도 PR은 유○○ 계정으로 열림(커밋은 윤○○ 계정). 021~023의 담당 미확인 | 23번 | #20 병합 후 대표 PR로 적기, 021~023 담당 확인 | 사람(팀원) |
 | 팀원 모두 PR 하나 이상, 리뷰 하나 이상 | PR 31개(병합 29·열림 #20·#31) 대부분 `dbdpfla98` 계정, #20만 `huijae1234`. **GitHub 리뷰 기록 0건**(31개 모두) | M | **없음**(리뷰) | 리뷰 0건, 윤○○ 계정 PR 0건 | 23번 | 팀원이 서로의 PR에 리뷰 남기기 | 사람(팀원) |
 | QA List 시트 링크 | [Claude QA_2026-10-29](https://docs.google.com/spreadsheets/d/1lzHdFibpIExUQGTC1Uc2NqJ3xWBynYJW-HxvxXhDLnM/edit#gid=1313590037) 28건(Pass 22·Fail 0·No Run 6), [직접 QA_2026-10-29](https://docs.google.com/spreadsheets/d/1lzHdFibpIExUQGTC1Uc2NqJ3xWBynYJW-HxvxXhDLnM/edit#gid=718011464) 25건(모두 No Run, 부분 확인 7건). 2026-10-29 오후 갱신 후 다시 읽어 확인. 공유: 소유 김희재 계정, 편집 유○○ 계정 | Q | **일부** | **사람이 끝까지 수행한 직접 QA 0건.** 윤○○·강사는 시트 공유 목록에 없음 | 9번 QA, 13·16·17·22번 증거 | 소유자가 강사 이메일(보기)과 윤○○(편집)에 공유, 직접 QA 수행(qa.md 4-4절 순서) | 사람(김희재·팀원) |
