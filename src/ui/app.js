@@ -57,7 +57,7 @@ let renderCount = 0;
 let lastLoggedPath = null; // spec 003 FR-008: 같은 화면을 다시 그릴 때(저장 뒤 새로 고침)는 남기지 않는다
 
 /**
- * 구글 로그인에서 돌아온 주소(?code=, ?error=)를 깨끗이 한다. 실패였으면 표시 (FR-001 수용 기준 2)
+ * 로그인(GitHub·구글)에서 돌아온 주소(?code=, ?error=)를 깨끗이 한다. 실패였으면 표시 (FR-001 수용 기준 2)
  * supabase-js가 ?code=로 로그인을 마친 뒤(getSession 이후)에 불러야 한다. 먼저 지우면 로그인이 끝나지 않는다
  */
 function clearAuthResult() {

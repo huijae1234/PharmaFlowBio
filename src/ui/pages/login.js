@@ -1,10 +1,10 @@
 // IA MB_000000_PG 로그인. FR-001 (spec 001)
 import { h } from "../dom.js";
-import { signInWithGoogle } from "../../infrastructure/store.js";
+import { signInWithGitHub } from "../../infrastructure/store.js";
 
 const LOGIN_FAILED = "로그인하지 못했습니다. 다시 시도해 주세요.";
 
-/** @param {{ failed: boolean }} options 구글 로그인 창을 닫았거나 실패하고 돌아왔는가 */
+/** @param {{ failed: boolean }} options GitHub 로그인 창을 닫았거나 실패하고 돌아왔는가 */
 export function renderLogin({ failed }) {
   const message = h("p", { class: "error-text", role: "alert" }, failed ? LOGIN_FAILED : "");
   const button = h("button", {
@@ -12,16 +12,16 @@ export function renderLogin({ failed }) {
     type: "button",
     onclick: async () => {
       button.disabled = true;
-      button.textContent = "구글로 이동하는 중…";
+      button.textContent = "GitHub로 이동하는 중…";
       try {
-        await signInWithGoogle();
+        await signInWithGitHub();
       } catch (error) {
         message.textContent = error.message;
         button.disabled = false;
-        button.textContent = "구글로 로그인";
+        button.textContent = "GitHub로 로그인";
       }
     },
-  }, "구글로 로그인");
+  }, "GitHub로 로그인");
 
   return h("main", { id: "content", class: "login-page" },
     h("section", { class: "panel login-panel" },

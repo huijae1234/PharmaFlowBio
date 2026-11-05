@@ -52,9 +52,10 @@ export async function getSession() {
   return data.session;
 }
 
-export async function signInWithGoogle() {
+// 포트폴리오 사본은 구글 클라우드 2단계 인증 제한 때문에 GitHub 로그인을 쓴다 (원본은 구글)
+export async function signInWithGitHub() {
   const { error } = await client.auth.signInWithOAuth({
-    provider: "google",
+    provider: "github",
     options: { redirectTo: `${location.origin}/` },
   });
   if (error) throw new Error("로그인하지 못했습니다. 다시 시도해 주세요.");

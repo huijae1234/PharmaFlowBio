@@ -209,7 +209,7 @@ flowchart TB
 Supabase 설정은 예시값입니다. 본인 프로젝트와 키를 준비해야 합니다.
 
 1. Node.js를 준비하고 .env.example을 .env로 복사합니다. 서버 API 키는 필요한 기능에 맞춰 설정합니다.
-2. 본인 Supabase 프로젝트에 supabase/migrations/의 SQL을 번호 순서대로 적용합니다. Google 로그인을 활성화하고 실행 주소를 허용합니다.
+2. 본인 Supabase 프로젝트에 supabase/migrations/의 SQL을 번호 순서대로 적용합니다. GitHub 로그인을 활성화하고 실행 주소를 허용합니다(원본 팀 프로젝트는 구글 로그인).
 3. [src/config.js](src/config.js)에 본인 프로젝트 URL과 공개 연결키를 설정합니다. 관리자 비밀키는 이 파일에 넣지 않습니다.
 4. 아래 명령으로 실행한 뒤 [로컬 화면](http://localhost:5173)을 엽니다. 최초 계정은 열람자로 시작하므로 QA 역할 설정도 필요합니다. [로그인·역할 설정](docs/specs/001-로그인-권한-기준이탈판정/plan.md)
 
