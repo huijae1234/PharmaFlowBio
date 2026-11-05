@@ -1,6 +1,6 @@
 // IA MB_000000_PG 로그인. FR-001 (spec 001)
 import { h } from "../dom.js";
-import { signInWithGitHub } from "../../infrastructure/store.js";
+import { signInAsGuest, signInWithGitHub } from "../../infrastructure/store.js";
 
 const LOGIN_FAILED = "로그인하지 못했습니다. 다시 시도해 주세요.";
 
@@ -23,12 +23,30 @@ export function renderLogin({ failed }) {
     },
   }, "GitHub로 로그인");
 
+  const guestButton = h("button", {
+    class: "button button--wide",
+    type: "button",
+    onclick: async () => {
+      guestButton.disabled = true;
+      guestButton.textContent = "게스트로 들어가는 중…";
+      try {
+        await signInAsGuest();
+      } catch (error) {
+        message.textContent = error.message;
+        guestButton.disabled = false;
+        guestButton.textContent = "게스트로 둘러보기";
+      }
+    },
+  }, "게스트로 둘러보기");
+
   return h("main", { id: "content", class: "login-page" },
     h("section", { class: "panel login-panel" },
       h("img", { class: "login-icon", src: "assets/icon.svg", alt: "", width: "64", height: "64" }), // spec 009 FR-006
       h("h1", { class: "page-title login-brand" }, "PharmaFlow ", h("span", { class: "brand-sub" }, "Bio")), // spec 007 FR-001
       h("p", { class: "muted" }, "로트의 품질 이슈와 승인 이력을 한곳에서 확인합니다."),
       button,
+      guestButton,
       message,
-      h("p", { class: "muted small" }, "처음 로그인하면 읽기만 할 수 있습니다. QA 관리자가 역할을 정해 주면 입력할 수 있습니다.")));
+      h("p", { class: "muted small" }, "처음 로그인하면 읽기만 할 수 있습니다. QA 관리자가 역할을 정해 주면 입력할 수 있습니다."),
+      h("p", { class: "muted small" }, "게스트는 읽기만 할 수 있고, 로그아웃하면 게스트 계정이 지워집니다.")));
 }

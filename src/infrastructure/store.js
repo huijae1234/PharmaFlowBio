@@ -61,7 +61,16 @@ export async function signInWithGitHub() {
   if (error) throw new Error("로그인하지 못했습니다. 다시 시도해 주세요.");
 }
 
+// 게스트(익명) 로그인: 열람자 읽기 전용. 포트폴리오 사본에서 계정 없이 둘러보게 한다 (0039)
+export async function signInAsGuest() {
+  const { error } = await client.auth.signInAnonymously();
+  if (error) throw new Error("게스트로 들어가지 못했습니다. 잠시 뒤 다시 시도해 주세요.");
+}
+
 export async function signOut() {
+  const { data } = await client.auth.getSession();
+  // 게스트는 로그아웃할 때 본인 계정을 지운다. 실패해도 로그아웃은 막지 않는다(밤마다 정리)
+  if (data.session?.user?.is_anonymous) await client.rpc("delete_guest");
   await client.auth.signOut();
 }
 
